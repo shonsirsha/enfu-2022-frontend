@@ -20,10 +20,18 @@ const CustomFormControl = styled(FormControl)`
 	}
 `;
 
-const CustomInput = ({ pill = false, subscriberInput = false, ...props }) => {
+const CustomInput = ({
+	pill = false,
+	subscriberInput = false,
+	value,
+	onChange,
+	...props
+}) => {
 	return (
 		<Form {...props}>
 			<CustomFormControl
+				value={value}
+				onChange={onChange}
 				subscriber={subscriberInput ? 1 : 0}
 				pill={pill ? 1 : 0}
 				type="email"

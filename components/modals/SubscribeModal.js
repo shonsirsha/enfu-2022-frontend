@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import styled from "styled-components";
-import MyButton from "../Buttons/MyButton";
-import CustomInput from "../Inputs/CustomInput";
+import MyButton from "components/Buttons/MyButton";
+import CustomInput from "components/Inputs/CustomInput";
+import Logo from "public/assets/logo_enfu.png";
+import Image from "next/image";
+import { AiOutlineClose } from "react-icons/ai";
+import axios from "axios";
 
 const StyledModal = styled(Modal)`
 	& .modal-content {
@@ -11,6 +15,10 @@ const StyledModal = styled(Modal)`
 		border-radius: 28px;
 
 		padding: 24px;
+	}
+
+	& .closeBtn:hover {
+		cursor: pointer;
 	}
 `;
 
@@ -65,32 +73,83 @@ const OuterHalfCircle = styled.div`
 	transform: rotate(180deg);
 `;
 
-const SubscribeModal = () => {
+const SubscribeModal = ({ showSubscribeModal, setShowSubscribeModal }) => {
+	const [email, setEmail] = useState("");
+	const handleClick = async () => {
+		try {
+			const subscribe = await axios({
+				method: "post",
+				url: "http://localhost:5000/api/subscribe",
+				data: {
+					email,
+				},
+			});
+
+			setEmail("");
+			console.log(subscribe);
+		} catch (e) {
+			console.log("error", e);
+		}
+	};
 	return (
-		<StyledModal size="lg" show onHide={() => {}} className="position-relative">
+		<StyledModal
+			size="lg"
+			show={showSubscribeModal}
+			onHide={() => {
+				setShowSubscribeModal(false);
+			}}
+			className="position-relative"
+		>
 			<div className="d-none d-lg-block">
 				<OuterHalfCircle />
 				<HalfCircle />
 			</div>
 
 			<Modal.Body>
-				<div className="d-flex flex-column">
-					<Subheader>Let&apos;s keep you updated!</Subheader>
-					<Header className="my-3">Subscribe to our newsletter</Header>
-					<div className="d-flex mb-2 align-items-center flex-wrap">
-						<CustomInput
-							className="me-2 mb-lg-0 mb-2 text-center"
-							pill
-							subscriberInput
-						/>
-						<MyButton variant="danger" pill textColor="lightYellow">
-							Subscribe
-						</MyButton>
+				<AiOutlineClose
+					style={{ fontSize: 24 }}
+					className="d-flex ms-auto my-2 closeBtn"
+					onClick={() => {
+						setShowSubscribeModal(false);
+					}}
+				/>
+
+				<div className="d-flex py-3">
+					<div
+						className="position-relative"
+						style={{ width: 320, height: 250 }}
+					>
+						<Image src={Logo} alt="Asd" layout="fill" />
 					</div>
-					<DiscalimerText>
-						By clicking subscribe, you agree to receive email newsletter and
-						calender notifications.
-					</DiscalimerText>
+
+					<div className="ms-5 d-flex flex-column">
+						<Subheader>Let&apos;s keep you updated!</Subheader>
+						<Header className="my-3">Subscribe to our newsletter</Header>
+						<div className="d-flex mb-2 align-items-center flex-wrap">
+							<CustomInput
+								value={email}
+								onChange={(e) => {
+									e.preventDefault();
+									setEmail(e.target.value);
+								}}
+								className="me-2 mb-lg-0 mb-2 text-center"
+								pill
+								subscriberInput
+							/>
+							<MyButton
+								onClick={handleClick}
+								variant="danger"
+								pill
+								textColor="lightYellow"
+							>
+								Subscribe
+							</MyButton>
+						</div>
+						<DiscalimerText>
+							By clicking subscribe, you agree to receive email newsletter and
+							calender notifications.
+						</DiscalimerText>
+					</div>
 				</div>
 			</Modal.Body>
 		</StyledModal>
