@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import SubscribeModal from "../components/modals/SubscribeModal";
+
 export default function Home() {
 	const [isSSR, setIsSSR] = useState(true);
 	const [showSubscribeModal, setShowSubscribeModal] = useState(true);
@@ -10,12 +11,10 @@ export default function Home() {
 	return (
 		<>
 			{!isSSR && (
-				<div>
-					<SubscribeModal
-						showSubscribeModal={showSubscribeModal}
-						setShowSubscribeModal={setShowSubscribeModal}
-					/>
-				</div>
+				<SubscribeModal
+					showSubscribeModal={showSubscribeModal}
+					setShowSubscribeModal={setShowSubscribeModal}
+				/>
 			)}
 		</>
 	);

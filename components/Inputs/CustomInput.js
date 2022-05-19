@@ -20,15 +20,28 @@ const CustomFormControl = styled(FormControl)`
 	}
 `;
 
+const DiscalimerText = styled.p`
+	font-family: Poppins;
+	font-size: 14px;
+	font-weight: 200;
+	line-height: 12px;
+`;
+
 const CustomInput = ({
 	pill = false,
 	subscriberInput = false,
 	value,
 	onChange,
+	errorText = "",
 	...props
 }) => {
 	return (
-		<Form {...props}>
+		<Form
+			onSubmit={(e) => {
+				e.preventDefault();
+			}}
+			{...props}
+		>
 			<CustomFormControl
 				value={value}
 				onChange={onChange}
@@ -37,6 +50,7 @@ const CustomInput = ({
 				type="email"
 				placeholder="Email"
 			/>
+			<DiscalimerText className="mt-3 text-start">{errorText}</DiscalimerText>
 		</Form>
 	);
 };

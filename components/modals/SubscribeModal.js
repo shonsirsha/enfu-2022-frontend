@@ -75,7 +75,11 @@ const OuterHalfCircle = styled.div`
 
 const SubscribeModal = ({ showSubscribeModal, setShowSubscribeModal }) => {
 	const [email, setEmail] = useState("");
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState("");
+	const [success, setSuccess] = useState(false);
 	const handleClick = async () => {
+		setLoading(true);
 		try {
 			const subscribe = await axios({
 				method: "post",
@@ -86,10 +90,16 @@ const SubscribeModal = ({ showSubscribeModal, setShowSubscribeModal }) => {
 			});
 
 			setEmail("");
+			setError("");
+			setSuccess(true);
 			console.log(subscribe);
 		} catch (e) {
-			console.log("error", e);
+			console.log("error");
+			if (e.response.status === 409) {
+				setError("Email already registered!");
+			}
 		}
+		setLoading(false);
 	};
 	return (
 		<StyledModal
@@ -126,25 +136,36 @@ const SubscribeModal = ({ showSubscribeModal, setShowSubscribeModal }) => {
 						<Subheader>Let&apos;s keep you updated!</Subheader>
 						<Header className="my-3">Subscribe to our newsletter</Header>
 						<div className="d-flex mb-2 align-items-center flex-wrap">
-							<CustomInput
-								value={email}
-								onChange={(e) => {
-									e.preventDefault();
-									setEmail(e.target.value);
-								}}
-								className="me-2 mb-lg-0 mb-2 text-center"
-								pill
-								subscriberInput
-							/>
-							<MyButton
-								onClick={handleClick}
-								variant="danger"
-								pill
-								textColor="lightYellow"
-							>
-								Subscribe
-							</MyButton>
+							{success ? (
+								<Subheader>Your subscription was successful</Subheader>
+							) : (
+								<>
+									{" "}
+									<CustomInput
+										value={email}
+										onChange={(e) => {
+											e.preventDefault();
+											setEmail(e.target.value);
+										}}
+										className="me-2 mb-lg-0 mb-2 text-center"
+										pill
+										errorText={error}
+										subscriberInput
+									/>
+									<MyButton
+										onClick={handleClick}
+										disabled={loading}
+										variant="danger"
+										className="mb-auto"
+										pill
+										textColor="lightYellow"
+									>
+										Subscribe
+									</MyButton>
+								</>
+							)}
 						</div>
+
 						<DiscalimerText>
 							By clicking subscribe, you agree to receive email newsletter and
 							calender notifications.
