@@ -32,6 +32,7 @@ const CustomInput = ({
 	subscriberInput = false,
 	value,
 	onChange,
+	onSubmit = () => {},
 	errorText = "",
 	...props
 }) => {
@@ -39,6 +40,7 @@ const CustomInput = ({
 		<Form
 			onSubmit={(e) => {
 				e.preventDefault();
+				onSubmit();
 			}}
 			{...props}
 		>
@@ -50,7 +52,9 @@ const CustomInput = ({
 				type="email"
 				placeholder="Email"
 			/>
-			<DiscalimerText className="mt-3 text-start">{errorText}</DiscalimerText>
+			<DiscalimerText className="mt-3 text-start text-danger">
+				{errorText}
+			</DiscalimerText>
 		</Form>
 	);
 };

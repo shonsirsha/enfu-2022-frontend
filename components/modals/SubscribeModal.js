@@ -137,7 +137,9 @@ const SubscribeModal = ({ showSubscribeModal, setShowSubscribeModal }) => {
 						<Header className="my-3">Subscribe to our newsletter</Header>
 						<div className="d-flex mb-2 align-items-center flex-wrap">
 							{success ? (
-								<Subheader>Your subscription was successful</Subheader>
+								<Subheader>
+									Your subscription to our newsletter was successful!
+								</Subheader>
 							) : (
 								<>
 									{" "}
@@ -149,6 +151,7 @@ const SubscribeModal = ({ showSubscribeModal, setShowSubscribeModal }) => {
 										}}
 										className="me-2 mb-lg-0 mb-2 text-center"
 										pill
+										onSubmit={handleClick}
 										errorText={error}
 										subscriberInput
 									/>
