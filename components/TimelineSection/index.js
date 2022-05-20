@@ -4,21 +4,21 @@ import { mediaBreakpoint } from "utils/mediaBreakpoints";
 const Container = styled.div`
 	height: 800px;
 	z-index: 3;
-	padding-top: 64px;
+	padding: 64px 0;
 
 	@media ${mediaBreakpoint.down.md} {
-		padding-top: 32px;
+		padding: 32px 0;
 	}
 `;
 
 const InnerContainer = styled.div`
-	height: calc(800px - 64px);
 	z-index: 4;
 	border-radius: 120px;
 	padding: 32px;
+	height: 100%;
 
 	@media ${mediaBreakpoint.down.md} {
-		height: calc(800px - 32px);
+		border-radius: 64px;
 	}
 `;
 
@@ -42,6 +42,7 @@ const TimeLineBadge = styled.div`
 	justify-content: center;
 
 	@media ${mediaBreakpoint.down.md} {
+		width: 300px;
 		height: 120px;
 		bottom: 110px;
 	}
