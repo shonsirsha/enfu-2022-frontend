@@ -7,6 +7,7 @@ import Logo from "public/assets/logo_enfu.png";
 import Image from "next/image";
 import { AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
+import { mediaBreakpoint } from "utils/mediaBreakpoints";
 
 const StyledModal = styled(Modal)`
 	& .modal-content {
@@ -15,6 +16,10 @@ const StyledModal = styled(Modal)`
 		border-radius: 28px;
 
 		padding: 24px;
+
+		@media ${mediaBreakpoint.down.md} {
+			padding: 8px;
+		}
 	}
 
 	& .closeBtn:hover {
@@ -34,6 +39,11 @@ const Header = styled.h2`
 	font-weight: 900;
 	font-size: 42px;
 	line-height: 42px;
+
+	@media ${mediaBreakpoint.down.md} {
+		font-size: 32px;
+		line-height: 32px;
+	}
 `;
 
 const DiscalimerText = styled.p`
@@ -72,7 +82,24 @@ const OuterHalfCircle = styled.div`
 	border-bottom: 0;
 	transform: rotate(180deg);
 `;
+const ImageContainer = styled.div`
+	width: 320px;
+	height: 250px;
 
+	@media ${mediaBreakpoint.down.lg} {
+		width: 250px;
+		height: 250px;
+
+		margin-bottom: 32px;
+	}
+
+	@media ${mediaBreakpoint.down.md} {
+		width: 160px;
+		height: 160px;
+
+		margin-bottom: 18px;
+	}
+`;
 const SubscribeModal = ({ showSubscribeModal, setShowSubscribeModal }) => {
 	const [email, setEmail] = useState("");
 	const [loading, setLoading] = useState(false);
@@ -94,9 +121,10 @@ const SubscribeModal = ({ showSubscribeModal, setShowSubscribeModal }) => {
 			setSuccess(true);
 			console.log(subscribe);
 		} catch (e) {
-			console.log("error");
 			if (e.response.status === 409) {
 				setError("Email already registered!");
+			} else {
+				setError("Sorry, an unexpected error happens, please try again!");
 			}
 		}
 		setLoading(false);
@@ -124,17 +152,18 @@ const SubscribeModal = ({ showSubscribeModal, setShowSubscribeModal }) => {
 					}}
 				/>
 
-				<div className="d-flex py-3">
-					<div
-						className="position-relative"
-						style={{ width: 320, height: 250 }}
-					>
+				<div className="d-flex py-3 flex-column flex-lg-row align-items-center">
+					<ImageContainer className="position-relative">
 						<Image src={Logo} alt="Asd" layout="fill" />
-					</div>
+					</ImageContainer>
 
-					<div className="ms-5 d-flex flex-column">
-						<Subheader>Let&apos;s keep you updated!</Subheader>
-						<Header className="my-3">Subscribe to our newsletter</Header>
+					<div className="ms-lg-5 ms-0 d-flex flex-column">
+						<Subheader className="mt-lg-0 mt-2">
+							Let&apos;s keep you updated!
+						</Subheader>
+						<Header className="my-lg-3 my-2 mb-3">
+							Subscribe to our newsletter
+						</Header>
 						<div className="d-flex mb-2 align-items-center flex-wrap">
 							{success ? (
 								<Subheader>
