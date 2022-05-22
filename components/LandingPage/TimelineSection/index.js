@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { mediaBreakpoint } from "utils/mediaBreakpoints";
-import { Container } from "react-bootstrap";
 
 import VerticalTimeLine from "components/TimeLines/VerticalTimeLine";
 const StyledContainer = styled.div`
@@ -86,7 +85,7 @@ const VerticalTLContainer = styled.div`
 
 const index = () => {
 	return (
-		<StyledContainer className="mt-5 bg-secondary position-relative">
+		<StyledContainer className="bg-secondary position-relative">
 			<InnerContainer className="bg-cream position-relative">
 				<TimeLineBadge className="bg-danger">
 					<Header className="text-cream">Timeline</Header>
