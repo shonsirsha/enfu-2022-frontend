@@ -20,7 +20,7 @@ const CustomFormControl = styled(FormControl)`
 	}
 `;
 
-const DiscalimerText = styled.p`
+const DisclaimerText = styled.p`
 	font-family: Poppins;
 	font-size: 14px;
 	font-weight: 200;
@@ -52,9 +52,9 @@ const CustomInput = ({
 				type="email"
 				placeholder="Email"
 			/>
-			<DiscalimerText className="mt-3 text-start text-danger">
+			<DisclaimerText className="my-3 text-start text-danger">
 				{errorText}
-			</DiscalimerText>
+			</DisclaimerText>
 		</Form>
 	);
 };

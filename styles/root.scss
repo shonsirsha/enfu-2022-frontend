@@ -13,6 +13,7 @@ $light: #f8f9fa;
 $dark: #343a40;
 $gray: #aaaaaa;
 $darkGray: #222222;
+$black: #000000;
 
 $lighterGreen: #48edb9;
 
@@ -36,6 +37,7 @@ $theme-colors: (
 	darkGray: $darkGray,
 	accent: $accent,
 	lighterGreen: $lighterGreen,
+	black: $black,
 );
 
 // Import Bootstrap and its default variables

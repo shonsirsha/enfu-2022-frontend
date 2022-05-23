@@ -7,7 +7,7 @@ const StyledButton = styled(Button)`
 `;
 const ButtonText = styled.p`
 	font-family: Poppins;
-	font-weight: 400;
+	font-weight: 200;
 `;
 const MyButton = ({ pill = true, textColor = "white", ...props }) => {
 	return (

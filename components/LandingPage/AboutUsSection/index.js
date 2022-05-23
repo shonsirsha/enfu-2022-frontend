@@ -7,19 +7,22 @@ import SemnasLogo from "public/assets/semnaslogo.png";
 import { mediaBreakpoint } from "utils/mediaBreakpoints";
 
 const StyledContainer = styled.div`
-	height: 100vh;
 	z-index: 3;
 	padding: 64px 24px;
 	padding-top: 186px;
 	border-radius: 104px;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
+	padding-bottom: 0;
+	margin-bottom: -280px;
 `;
 
 const TextContainer = styled.div`
 	min-height: 400px;
-	max-width: 820px;
+
+	max-width: 960px;
 	width: 100%;
+
 	margin: 0 auto;
 	bottom: 282px;
 	border-radius: 24px;

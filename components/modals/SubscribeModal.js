@@ -136,7 +136,6 @@ const SubscribeModal = ({ showSubscribeModal, setShowSubscribeModal }) => {
 			onHide={() => {
 				setShowSubscribeModal(false);
 			}}
-			className="position-relative"
 		>
 			<div className="d-none d-lg-block">
 				<OuterHalfCircle />
