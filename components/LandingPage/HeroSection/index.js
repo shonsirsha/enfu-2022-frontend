@@ -13,6 +13,9 @@ const Header = styled.h1`
 	line-height: 64px;
 	font-family: TT_Ramilas;
 	font-weight: 900;
+	& span {
+		font-family: Poppins;
+	}
 `;
 
 const SubHeader = styled.p`
@@ -29,7 +32,7 @@ const HeroSection = () => {
 				<Image src={EnfuLogo} alt="Logo Enfu" width={196} height={196} />
 				<div className="ms-lg-2 ms-0 d-flex flex-column align-items-center text-center">
 					<Header>
-						The <span className="text-danger">15th</span> Enfution
+						The <span className="text-danger">14th</span> Enfution
 					</Header>
 					<SubHeader className="mt-3">
 						NATIONAL SEMINAR | BUSINESS CASE

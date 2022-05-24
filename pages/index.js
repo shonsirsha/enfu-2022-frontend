@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Head from "next/head";
 import SubscribeModal from "../components/modals/SubscribeModal";
 import TimelineSection from "components/LandingPage/TimelineSection";
 import EventsSection from "components/LandingPage/EventsSection";
@@ -6,6 +7,7 @@ import AboutUsSection from "components/LandingPage/AboutUsSection";
 import HeroSection from "components/LandingPage/HeroSection";
 import SponsorSection from "components/LandingPage/SponsorSection";
 import ForewordSection from "components/LandingPage/ForewordSection";
+import FooterSection from "components/LandingPage/FooterSection";
 
 export default function Home() {
 	const [isSSR, setIsSSR] = useState(true);
@@ -18,6 +20,9 @@ export default function Home() {
 		<>
 			{!isSSR && (
 				<>
+					<Head>
+						<title>Enfution 2022</title>
+					</Head>
 					<HeroSection />
 					<AboutUsSection />
 					<SubscribeModal
@@ -28,6 +33,7 @@ export default function Home() {
 					<TimelineSection />
 					<ForewordSection />
 					<SponsorSection />
+					<FooterSection />
 				</>
 			)}
 		</>
