@@ -5,6 +5,7 @@ import EventsSection from "components/LandingPage/EventsSection";
 import AboutUsSection from "components/LandingPage/AboutUsSection";
 import HeroSection from "components/LandingPage/HeroSection";
 import SponsorSection from "components/LandingPage/SponsorSection";
+import ForewordSection from "components/LandingPage/ForewordSection";
 
 export default function Home() {
 	const [isSSR, setIsSSR] = useState(true);
@@ -25,6 +26,7 @@ export default function Home() {
 					/>
 					<EventsSection />
 					<TimelineSection />
+					<ForewordSection />
 					<SponsorSection />
 				</>
 			)}

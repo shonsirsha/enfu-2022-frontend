@@ -24,6 +24,11 @@ const LabelContainer = styled.div`
 	top: 0;
 	left: 50%;
 	transform: translateX(-50%);
+
+	@media ${mediaBreakpoint.down.md} {
+		padding: 8px;
+		height: 32px;
+	}
 `;
 
 const LabelText = styled.p`
@@ -33,7 +38,8 @@ const LabelText = styled.p`
 	font-size: 22px;
 
 	@media ${mediaBreakpoint.down.md} {
-		font-size: 20px;
+		font-size: 14px;
+		line-height: 14px;
 	}
 `;
 const SponsorSection = () => {
