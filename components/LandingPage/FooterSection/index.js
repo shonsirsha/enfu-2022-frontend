@@ -90,7 +90,7 @@ const FooterSection = () => {
 	const handleClick = async () => {
 		setLoading(true);
 		try {
-			const subscribe = await axios({
+			await axios({
 				method: "post",
 				url: "http://localhost:5000/api/subscribe",
 				data: {
