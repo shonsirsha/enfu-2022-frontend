@@ -8,7 +8,7 @@ import FormInput from "components/FormInput";
 import BlueButton from "components/Buttons/BlueButton";
 import { whitespace, validEmail } from "utils/validations";
 import ParticipantsOfDBCC from "components/DBCC/registrations/coaching-session/ParticipantsOfDBCC";
-import NonParticipantsOfDBCC from "components/DBCC/registrations/coaching-session/NonParticipantsOfDBCC";
+import NoPaper from "components/DBCC/registrations/coaching-clinic/NoPaper";
 import SuccessDBCC from "components/Success/SuccessDBCC";
 
 const OuterContainer = styled.div`
@@ -134,7 +134,7 @@ const FirstStep = ({ handleNext, onChange, details }) => {
 			</div>
 
 			<NextStepText className="mt-5 mx-auto text-lg-start text-center">
-				Are you a participant of Diponegoro Busines Case Competition?
+				Is there a paper to be reviewed?
 			</NextStepText>
 
 			<div className="d-flex mx-auto mt-4 flex-lg-row flex-md-row flex-column ">
@@ -147,10 +147,10 @@ const FirstStep = ({ handleNext, onChange, details }) => {
 					YES
 				</BlueButton>
 				<BlueButton
-					className="shadow"
 					onClick={() => {
 						handleNext(1);
 					}}
+					className="shadow"
 					textColor={"danger"}
 				>
 					NO
@@ -160,8 +160,8 @@ const FirstStep = ({ handleNext, onChange, details }) => {
 	);
 };
 
-const CoachingSession = () => {
-	const [isDBCCParticipant, setIsDBCCParticipant] = useState(-1);
+const CoachingClinic = () => {
+	const [anyPaperToBeReviewedStatus, setAnyPaperToBeReviewed] = useState(-1);
 	const [buktiTrfFile, setBuktiTrfFile] = useState(null);
 	const [success, setSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -175,9 +175,7 @@ const CoachingSession = () => {
 		lineId: "",
 		gender: "",
 		email: "",
-		dbccParticipant: false,
-		dbccTeamName: "",
-		dbccCodeOfRegistration: "",
+		anyPaperToBeReviewed: false,
 	});
 
 	const {
@@ -189,59 +187,23 @@ const CoachingSession = () => {
 		lineId,
 		gender,
 		email,
-		dbccParticipant,
-		dbccTeamName,
-		dbccCodeOfRegistration,
+		anyPaperToBeReviewed,
 	} = details;
 
 	const handleNext = (num) => {
-		setIsDBCCParticipant(num);
+		setAnyPaperToBeReviewed(num);
 
 		if (num === 0) {
-			setDetails({ ...details, dbccParticipant: true });
+			setDetails({ ...details, anyPaperToBeReviewed: true });
 		} else if (num === 1) {
-			setDetails({ ...details, dbccParticipant: false });
+			setDetails({ ...details, anyPaperToBeReviewed: false });
 		}
 	};
 	const onChange = (e) => {
 		setDetails({ ...details, [e.target.name]: e.target.value });
 	};
 
-	const registerDBCCParticipant = async () => {
-		setLoading(true);
-		try {
-			const register = await axios({
-				method: "post",
-				url: "http://localhost:5000/api/coaching-session",
-				data: {
-					fullName,
-					placeDOB,
-					facultyDepartmentBatch,
-					phoneNr,
-					univName,
-					lineId,
-					gender,
-					email,
-					dbccParticipant,
-					dbccTeamName,
-					dbccCodeOfRegistration,
-				},
-			});
-
-			setSuccess(true);
-		} catch (e) {
-			if (e.response.status === 409) {
-				alert(`Oops, your email (${email}) has already been registered! 😬 `);
-			} else {
-				alert(
-					`Oops, sorry, an error occured. 😬 Please try to re-submit your registration.\n\nIf this error keeps happening, please report it to us. Error code: ${e.response.status}`
-				);
-			}
-		}
-		setLoading(false);
-	};
-
-	const registerNONDBCC = async () => {
+	const registerNoPaper = async () => {
 		setLoading(true);
 		try {
 			let bodyFormData = new FormData();
@@ -253,14 +215,13 @@ const CoachingSession = () => {
 			bodyFormData.append("lineId", lineId);
 			bodyFormData.append("gender", gender);
 			bodyFormData.append("email", email);
-			bodyFormData.append("dbccParticipant", dbccParticipant);
-			bodyFormData.append("dbccTeamName", "");
-			bodyFormData.append("dbccCodeOfRegistration", "");
+			bodyFormData.append("anyPaperToBeReviewed", anyPaperToBeReviewed);
+
 			bodyFormData.append("buktiTrf", buktiTrfFile);
 
 			await axios({
 				method: "post",
-				url: "http://localhost:5000/api/coaching-session",
+				url: "http://localhost:5000/api/coaching-clinic",
 				headers: { "Content-Type": "multipart/form-data" },
 				data: bodyFormData,
 			});
@@ -291,17 +252,12 @@ const CoachingSession = () => {
 		) {
 			alert("Please fill in all required fields! 😊");
 		} else {
-			if (dbccParticipant) {
-				if (whitespace(dbccTeamName) || whitespace(dbccCodeOfRegistration)) {
-					alert("Please fill in all required fields! 😊");
-				} else {
-					await registerDBCCParticipant();
-				}
+			if (anyPaperToBeReviewed) {
 			} else {
 				if (!buktiTrfFile) {
 					alert("Please attach your payment slip! 😊");
 				} else {
-					await registerNONDBCC();
+					await registerNoPaper();
 				}
 			}
 		}
@@ -312,13 +268,11 @@ const CoachingSession = () => {
 				<SuccessDBCC />
 			) : (
 				<OuterContainer className={`bg-cream align-items-center`}>
-					<Header className="mb-lg-5 mb-3">
-						COACHING SESSION REGISTRATION
-					</Header>
+					<Header className="mb-lg-5 mb-3">COACHING CLINIC REGISTRATION</Header>
 
 					<Container>
 						<FormContainer>
-							{isDBCCParticipant === -1 && (
+							{anyPaperToBeReviewedStatus === -1 && (
 								<FirstStep
 									handleNext={handleNext}
 									onChange={onChange}
@@ -326,7 +280,7 @@ const CoachingSession = () => {
 								/>
 							)}
 
-							{isDBCCParticipant === 0 && (
+							{anyPaperToBeReviewedStatus === 0 && (
 								<ParticipantsOfDBCC
 									handleNext={handleNext}
 									onChange={onChange}
@@ -336,8 +290,8 @@ const CoachingSession = () => {
 								/>
 							)}
 
-							{isDBCCParticipant === 1 && (
-								<NonParticipantsOfDBCC
+							{anyPaperToBeReviewedStatus === 1 && (
+								<NoPaper
 									handleNext={handleNext}
 									details={details}
 									loading={loading}
@@ -354,4 +308,4 @@ const CoachingSession = () => {
 	);
 };
 
-export default CoachingSession;
+export default CoachingClinic;

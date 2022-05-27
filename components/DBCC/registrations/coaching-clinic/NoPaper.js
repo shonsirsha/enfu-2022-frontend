@@ -8,12 +8,6 @@ import PaypalLogo from "public/assets/paypal_logo.png";
 import GopayLogo from "public/assets/gopay_logo.png";
 import OVOLogo from "public/assets/ovo_logo.png";
 
-const Subheader = styled.p`
-	font-family: TT_Ramilas;
-	font-size: 24px;
-	line-height: 24px;
-`;
-
 const NoticeText = styled.p`
 	font-family: Poppins;
 	font-size: 16px;
@@ -36,7 +30,7 @@ const Triangle = styled.div`
 	border-left: 16px solid #ff5a24;
 `;
 
-const NonParticipantsOfDBCC = ({
+const NoPaper = ({
 	handleNext,
 	setBuktiTrfFile,
 	buktiTrfFile,
@@ -45,10 +39,7 @@ const NonParticipantsOfDBCC = ({
 }) => {
 	return (
 		<div className="d-flex flex-column">
-			<Subheader className="mb-4 text-lg-start text-md-start text-center text-danger">
-				Non Participant
-			</Subheader>
-			<NoticeText className="mb-4 text-lg-start text-md-start text-center">
+			<NoticeText className="mb-4">
 				Please complete the payment through one of these options below!
 			</NoticeText>
 			<div className="d-flex mb-4 flex-wrap justify-content-center">
@@ -103,7 +94,7 @@ const NonParticipantsOfDBCC = ({
 				/>
 				<div className="d-flex me-lg-5 me-0 align-items-center mt-lg-0 mt-3">
 					<Triangle className="me-3" />
-					<PriceText>IDR 25K / 2 USD</PriceText>
+					<PriceText>IDR 35K / 3 USD</PriceText>
 				</div>
 			</div>
 
@@ -134,4 +125,4 @@ const NonParticipantsOfDBCC = ({
 		</div>
 	);
 };
-export default NonParticipantsOfDBCC;
+export default NoPaper;

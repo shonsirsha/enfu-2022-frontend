@@ -51,11 +51,12 @@ const ParticipantsOfDBCC = ({
 							onClick={() => {
 								handleNext(-1);
 							}}
-							className="me-lg-3 me-md-3 me-0 mb-3 mb-lg-0 mb-md-0"
+							className="me-lg-3 me-md-3 me-0 mb-3 mb-lg-0 mb-md-0 shadow"
 						>
 							BACK
 						</BlueButton>
 						<BlueButton
+							className="shadow"
 							onClick={() => {
 								handleSubmit();
 							}}

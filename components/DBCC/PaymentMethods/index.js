@@ -25,13 +25,13 @@ const PaymentMethod = ({
 }) => {
 	return (
 		<div className="d-flex flex-column">
-			<div style={{ width: w, height: h }} className="positon-relative">
+			<div style={{ width: w, height: h }} className="positon-relative mx-auto">
 				<Image src={src} alt={alt} layout="responsive" />
 			</div>
 
 			<DetailsContainer className="mt-1">
-				<DetailText className="mb-2">{accountNumber}</DetailText>
-				<DetailText>{accountName}</DetailText>
+				<DetailText className="mb-2 text-center">{accountNumber}</DetailText>
+				<DetailText className="text-center">{accountName}</DetailText>
 			</DetailsContainer>
 		</div>
 	);

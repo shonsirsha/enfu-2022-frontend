@@ -17,6 +17,7 @@ const ButtonText = styled.p`
 	font-weight: 500;
 `;
 const BlueButton = ({ pill = true, textColor = "white", ...props }) => {
+	const { className } = props;
 	return (
 		<StyledButton {...props}>
 			<ButtonText className={`text-${textColor}`}>{props.children}</ButtonText>
