@@ -34,18 +34,16 @@ const NonParticipantsOfDBCC = ({
 	handleNext,
 	setBuktiTrfFile,
 	buktiTrfFile,
-	details,
 	handleSubmit,
 	loading,
 }) => {
-	const { dbccTeamName, dbccCodeOfRegistration } = details;
 	return (
 		<div className="d-flex flex-column">
 			<NoticeText className="mb-4">
-				Please upload your DBCC’s registration and payment slip below!
+				Please complete the payment through one of these options below!
 			</NoticeText>
 			<div className="d-flex mb-4 flex-wrap justify-content-center">
-				<div className="me-4">
+				<div className="me-lg-4 me-md-3 mb-lg-0 mb-5">
 					<PaymentMethod
 						src={PaypalLogo}
 						w={200}
@@ -56,7 +54,7 @@ const NonParticipantsOfDBCC = ({
 					/>
 				</div>
 
-				<div className="me-4">
+				<div className="me-lg-4 mb-lg-0 mb-5">
 					<PaymentMethod
 						src={GopayLogo}
 						w={200}
@@ -66,7 +64,7 @@ const NonParticipantsOfDBCC = ({
 						accountName="(a.n Dhea Reskita Saragih)"
 					/>
 				</div>
-				<div className="me-4">
+				<div className="me-lg-4 me-md-3 mb-lg-0 mb-5">
 					<PaymentMethod
 						src={OVOLogo}
 						w={200}
@@ -76,7 +74,7 @@ const NonParticipantsOfDBCC = ({
 						accountName="(a.n Natalia Karlina Ginting)"
 					/>
 				</div>
-				<div className="me-0">
+				<div className="me-lg-4 mb-lg-0 ">
 					<PaymentMethod
 						src={DanaLogo}
 						w={200}
@@ -87,20 +85,20 @@ const NonParticipantsOfDBCC = ({
 					/>
 				</div>
 			</div>
-			<div className="mt-3 d-flex w-100 justify-content-between align-items-center">
+			<div className="mt-3 d-flex w-100 justify-content-lg-between justify-content-center align-items-center flex-lg-row flex-md-row flex-column">
 				<FileInput
 					setFile={setBuktiTrfFile}
 					file={buktiTrfFile}
 					accept="image/png, image/jpeg, image/jpg"
 					text={"Upload File (payment slip)*"}
 				/>
-				<div className="d-flex me-lg-5 me-0 align-items-center">
+				<div className="d-flex me-lg-5 me-0 align-items-center mt-lg-0 mt-3">
 					<Triangle className="me-3" />
 					<PriceText>IDR 25K/2 USD</PriceText>
 				</div>
 			</div>
 
-			<div className="d-flex ms-auto me-5 mt-4">
+			<div className="d-flex ms-lg-auto ms-md-auto ms-0 me-lg-5 me-md-4 me-0 mt-5 flex-lg-row flex-md-row flex-column">
 				{loading ? (
 					<NoticeText className="mb-4">Registering...</NoticeText>
 				) : (
@@ -109,9 +107,9 @@ const NonParticipantsOfDBCC = ({
 							onClick={() => {
 								handleNext(-1);
 							}}
-							className="me-3"
+							className="me-lg-3 me-md-3 me-0 mb-lg-0 mb-md-0 mb-3"
 						>
-							Back
+							BACK
 						</BlueButton>
 						<BlueButton
 							onClick={() => {

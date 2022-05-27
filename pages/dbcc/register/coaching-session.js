@@ -31,7 +31,6 @@ const Container = styled.div`
 	margin: 0 auto;
 	@media (max-width: 1194px) and ${mediaBreakpoint.up.lg} {
 		max-width: 996px;
-		margin-top: -164px;
 	}
 `;
 
@@ -44,6 +43,11 @@ const Header = styled.h1`
 	font-family: TT_Ramilas;
 	font-size: 48px;
 	line-height: 48px;
+
+	@media ${mediaBreakpoint.down.md} {
+		font-size: 32px;
+		line-height: 32px;
+	}
 `;
 
 const FirstStep = ({ handleNext, onChange, details }) => {
@@ -60,7 +64,7 @@ const FirstStep = ({ handleNext, onChange, details }) => {
 
 	return (
 		<>
-			<div className="d-flex">
+			<div className="d-flex flex-lg-row flex-md-row flex-column">
 				<FormInput
 					onChange={onChange}
 					text={"Full Name*"}
@@ -77,7 +81,7 @@ const FirstStep = ({ handleNext, onChange, details }) => {
 					value={placeDOB}
 				/>
 			</div>
-			<div className="d-flex mt-3">
+			<div className="d-flex flex-lg-row flex-md-row flex-column mt-3">
 				<FormInput
 					onChange={onChange}
 					text={"Faculty / Department / Batch*"}
@@ -94,7 +98,7 @@ const FirstStep = ({ handleNext, onChange, details }) => {
 				/>
 			</div>
 
-			<div className="d-flex mt-3">
+			<div className="d-flex flex-lg-row flex-md-row flex-column mt-3">
 				<FormInput
 					onChange={onChange}
 					text={"University / Institute*"}
@@ -110,7 +114,7 @@ const FirstStep = ({ handleNext, onChange, details }) => {
 				/>
 			</div>
 
-			<div className="d-flex mt-3">
+			<div className="d-flex flex-lg-row flex-md-row flex-column mt-3">
 				<FormInput
 					onChange={onChange}
 					text={"Gender*"}
@@ -129,16 +133,16 @@ const FirstStep = ({ handleNext, onChange, details }) => {
 				/>
 			</div>
 
-			<NextStepText className="mt-5 mx-auto">
+			<NextStepText className="mt-5 mx-auto text-lg-start text-center">
 				Are you a participant of Diponegoro Busines Case Competition?
 			</NextStepText>
 
-			<div className="d-flex mx-auto mt-4">
+			<div className="d-flex mx-auto mt-4 flex-lg-row flex-md-row flex-column ">
 				<BlueButton
 					onClick={() => {
 						handleNext(0);
 					}}
-					className="me-5"
+					className="me-lg-5 me-md-3 me-0 mb-lg-0 mb-md-0 mb-2"
 				>
 					YES
 				</BlueButton>
@@ -194,6 +198,8 @@ const CoachingSession = () => {
 
 		if (num === 0) {
 			setDetails({ ...details, dbccParticipant: true });
+		} else if (num === 1) {
+			setDetails({ ...details, dbccParticipant: false });
 		}
 	};
 	const onChange = (e) => {
@@ -305,7 +311,9 @@ const CoachingSession = () => {
 				<SuccessDBCC />
 			) : (
 				<OuterContainer className={`bg-cream align-items-center`}>
-					<Header className="mb-5">COACHING SESSION REGISTRATION</Header>
+					<Header className="mb-lg-5 mb-3">
+						COACHING SESSION REGISTRATION
+					</Header>
 
 					<Container>
 						<FormContainer>

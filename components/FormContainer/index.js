@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { mediaBreakpoint } from "utils/mediaBreakpoints";
 const InnerContainer = styled.div`
 	padding: 24px 32px;
 	padding-right: 0;
@@ -8,6 +8,10 @@ const InnerContainer = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+
+	@media ${mediaBreakpoint.down.lg} {
+		padding: 16px;
+	}
 `;
 
 const Border = styled.div`

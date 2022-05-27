@@ -26,10 +26,8 @@ const ParticipantsOfDBCC = ({
 	return (
 		<div className="d-flex flex-column">
 			<Subheader className="mb-4 text-danger">Participants of DBCC</Subheader>
-			<NoticeText className="mb-4">
-				Please upload your DBCC’s registration and payment slip below!
-			</NoticeText>
-			<div className="d-flex mb-4">
+
+			<div className="d-flex flex-lg-row flex-md-row flex-column mb-4">
 				<FormInput
 					text={"Team Name*"}
 					value={dbccTeamName}
@@ -44,18 +42,18 @@ const ParticipantsOfDBCC = ({
 				/>
 			</div>
 
-			<div className="d-flex ms-auto me-5 mt-4">
+			<div className="d-flex ms-lg-auto ms-md-auto ms-0 me-lg-5 me-md-4 me-0 mt-4 flex-lg-row flex-md-row flex-column">
 				{loading ? (
-					<NoticeText className="mb-4">Registering...</NoticeText>
+					<NoticeText>Registering...</NoticeText>
 				) : (
 					<>
 						<BlueButton
 							onClick={() => {
 								handleNext(-1);
 							}}
-							className="me-3"
+							className="me-lg-3 me-md-3 me-0 mb-3 mb-lg-0 mb-md-0"
 						>
-							Back
+							BACK
 						</BlueButton>
 						<BlueButton
 							onClick={() => {
