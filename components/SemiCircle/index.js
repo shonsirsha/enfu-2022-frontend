@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SemiCircle = styled.div`
-	background-color: #48abe0;
+	background-color: red;
 	width: 100px;
 	height: 50px;
 	background-color: #48abe0;

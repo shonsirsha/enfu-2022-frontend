@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useState } from "react";
 import styled from "styled-components";
 import FormContainer from "components/FormContainer";
@@ -7,7 +8,7 @@ import FormInput from "components/FormInput";
 import BlueButton from "components/Buttons/BlueButton";
 import { whitespace, validEmail } from "utils/validations";
 import FileInput from "components/FormInput/FileInput";
-import axios from "axios";
+import SuccessDBCC from "components/Success/SuccessDBCC";
 
 const OuterContainer = styled.div`
 	padding: 32px;
@@ -291,7 +292,11 @@ const CoachingSession = () => {
 			console.log("Done?", register);
 		} catch (e) {
 			if (e.response.status === 409) {
-				alert("Email has already been used!");
+				alert(`Oops, your email (${email}) has already been registered! 😬 `);
+			} else {
+				alert(
+					`Oops, sorry, an error occured. 😬 Please try to re-submit your registration.\n\nIf this error keeps happening, please report it to us. Error code: ${e.response.status}`
+				);
 			}
 		}
 		setLoading(false);
@@ -320,13 +325,11 @@ const CoachingSession = () => {
 		}
 	};
 	return (
-		<OuterContainer
-			className={`bg-${success ? `orange` : `cream`} align-items-center`}
-		>
+		<>
 			{success ? (
-				<>Success</>
+				<SuccessDBCC />
 			) : (
-				<>
+				<OuterContainer className={`bg-cream align-items-center`}>
 					<Header className="mb-5">COACHING SESSION REGISTRATION</Header>
 
 					<Container>
@@ -351,9 +354,9 @@ const CoachingSession = () => {
 							)}
 						</FormContainer>
 					</Container>
-				</>
+				</OuterContainer>
 			)}
-		</OuterContainer>
+		</>
 	);
 };
 
