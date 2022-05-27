@@ -7,7 +7,8 @@ import { mediaBreakpoint } from "utils/mediaBreakpoints";
 import FormInput from "components/FormInput";
 import BlueButton from "components/Buttons/BlueButton";
 import { whitespace, validEmail } from "utils/validations";
-import FileInput from "components/FormInput/FileInput";
+import ParticipantsOfDBCC from "components/DBCC/registrations/coaching-session/ParticipantsOfDBCC";
+import NonParticipantsOfDBCC from "components/DBCC/registrations/coaching-session/NonParticipantsOfDBCC";
 import SuccessDBCC from "components/Success/SuccessDBCC";
 
 const OuterContainer = styled.div`
@@ -44,81 +45,6 @@ const Header = styled.h1`
 	font-size: 48px;
 	line-height: 48px;
 `;
-
-const Subheader = styled.p`
-	font-family: TT_Ramilas;
-	font-size: 24px;
-	line-height: 24px;
-`;
-
-const NoticeText = styled.p`
-	font-family: Poppins;
-	font-size: 16px;
-	font-weight: 500;
-	font-style: italic;
-`;
-
-const ParticipantsOfDBCC = ({
-	handleNext,
-	onChange,
-	details,
-	handleSubmit,
-	loading,
-	setLoading,
-}) => {
-	const { dbccTeamName, dbccCodeOfRegistration } = details;
-	return (
-		<div className="d-flex flex-column">
-			<Subheader className="mb-4 text-danger">Participants of DBCC</Subheader>
-			<NoticeText className="mb-4">
-				Please upload your DBCC’s registration and payment slip below!
-			</NoticeText>
-			<div className="d-flex mb-4">
-				<FormInput
-					text={"Team Name*"}
-					value={dbccTeamName}
-					onChange={onChange}
-					name="dbccTeamName"
-				/>
-				<FormInput
-					onChange={onChange}
-					value={dbccCodeOfRegistration}
-					text={"Code of Registration*"}
-					name="dbccCodeOfRegistration"
-				/>
-			</div>
-
-			{/* <FileInput
-				accept="image/png, image/jpeg, image/jpg"
-				text={"Upload File (payment slip of DBCC)*"}
-			/> */}
-
-			<div className="d-flex ms-auto me-5 mt-4">
-				{loading ? (
-					<NoticeText className="mb-4">Registering...</NoticeText>
-				) : (
-					<>
-						<BlueButton
-							onClick={() => {
-								handleNext(-1);
-							}}
-							className="me-3"
-						>
-							Back
-						</BlueButton>
-						<BlueButton
-							onClick={() => {
-								handleSubmit();
-							}}
-						>
-							SUBMIT
-						</BlueButton>
-					</>
-				)}
-			</div>
-		</div>
-	);
-};
 
 const FirstStep = ({ handleNext, onChange, details }) => {
 	const {
@@ -216,7 +142,14 @@ const FirstStep = ({ handleNext, onChange, details }) => {
 				>
 					YES
 				</BlueButton>
-				<BlueButton textColor={"danger"}>NO</BlueButton>
+				<BlueButton
+					onClick={() => {
+						handleNext(1);
+					}}
+					textColor={"danger"}
+				>
+					NO
+				</BlueButton>
 			</div>
 		</>
 	);
@@ -348,7 +281,16 @@ const CoachingSession = () => {
 									onChange={onChange}
 									details={details}
 									loading={loading}
-									setLoading={setLoading}
+									handleSubmit={handleSubmit}
+								/>
+							)}
+
+							{isDBCCParticipant === 1 && (
+								<NonParticipantsOfDBCC
+									handleNext={handleNext}
+									onChange={onChange}
+									details={details}
+									loading={loading}
 									handleSubmit={handleSubmit}
 								/>
 							)}

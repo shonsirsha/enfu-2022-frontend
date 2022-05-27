@@ -18,7 +18,7 @@ const UploadBtn = styled.button`
 	height: 80px;
 	width: 220px;
 	border: none;
-	border-radius: 16px;
+	border-radius: 10px;
 	padding: 8px;
 `;
 
@@ -52,7 +52,7 @@ const FileInput = ({ text, accept = "", ref = "" }) => {
 		}
 	};
 	return (
-		<div className="d-flex flex-column w-100 me-5">
+		<div className="d-flex flex-column">
 			<FormText className="mb-2">{text}:</FormText>
 			{!fileSelected ? (
 				<UploadBtn
