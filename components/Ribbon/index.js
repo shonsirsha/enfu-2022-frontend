@@ -5,8 +5,8 @@ import { mediaBreakpoint } from "utils/mediaBreakpoints";
 const StyledRibbon = styled.h1`
 	position: absolute;
 	display: block;
-	width: 260px;
-	height: 54px;
+	min-width: 260px;
+	padding: 8px 16px;
 	border: 1px solid #ff5a24;
 	text-align: center;
 	color: #451;
@@ -20,8 +20,8 @@ const StyledRibbon = styled.h1`
 
 	font-family: TT_Ramilas;
 	font-weight: 900;
-	font-size: 40px;
-	line-height: 40px;
+	font-size: 34px;
+	line-height: 34px;
 
 	&::after,
 	&::before {
@@ -29,7 +29,7 @@ const StyledRibbon = styled.h1`
 		position: absolute;
 		z-index: 1;
 		left: -58px;
-		top: 24px;
+		top: 23px;
 		display: block;
 		width: 40px;
 		height: 0px;
@@ -54,9 +54,6 @@ const StyledRibbon = styled.h1`
 		line-height: 24px;
 
 		left: 51%;
-
-		width: 180px;
-		height: 38px;
 
 		&::after,
 		&::before {

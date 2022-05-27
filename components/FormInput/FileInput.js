@@ -43,6 +43,7 @@ const ChangeButton = styled.button`
 const FileInput = ({
 	text,
 	accept = "",
+	center = false,
 	ref = "",
 	setFile = () => {},
 	file,
@@ -61,7 +62,7 @@ const FileInput = ({
 		}
 	};
 	return (
-		<div className="d-flex flex-column">
+		<div className={`d-flex flex-column ${center && `align-items-center`}`}>
 			<FormText className="mb-2">{text}:</FormText>
 			{!file ? (
 				<UploadBtn
@@ -95,7 +96,9 @@ const FileInput = ({
 				type={"file"}
 			/>
 
-			<NoticeText className="text-danger mt-2">{noticeText}</NoticeText>
+			<NoticeText className={`text-danger mt-2 ${center && `text-center`}`}>
+				{noticeText}
+			</NoticeText>
 		</div>
 	);
 };
