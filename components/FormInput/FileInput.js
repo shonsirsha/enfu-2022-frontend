@@ -46,6 +46,7 @@ const FileInput = ({
 	ref = "",
 	setFile = () => {},
 	file,
+	noticeText = "File must be of type .jpg/.png with a maximum size of 5MB",
 }) => {
 	const inputRef = useRef(ref);
 
@@ -94,9 +95,7 @@ const FileInput = ({
 				type={"file"}
 			/>
 
-			<NoticeText className="text-danger mt-2">
-				File must be of type .jpg/.png with a maximum size of 5MB
-			</NoticeText>
+			<NoticeText className="text-danger mt-2">{noticeText}</NoticeText>
 		</div>
 	);
 };

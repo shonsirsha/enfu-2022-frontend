@@ -30,15 +30,27 @@ const Triangle = styled.div`
 	border-left: 16px solid #ff5a24;
 `;
 
-const NoPaper = ({
+const WithPaper = ({
 	handleNext,
 	setBuktiTrfFile,
 	buktiTrfFile,
+	setPaperFile,
+	paperFile,
 	handleSubmit,
 	loading,
 }) => {
 	return (
 		<div className="d-flex flex-column">
+			<div className="mb-3">
+				<FileInput
+					setFile={setPaperFile}
+					file={paperFile}
+					accept="application/pdf"
+					text={"Upload File: paper file (not DBCC 2022 paper)*"}
+					noticeText={"File must be of type .pdf with a maximum size of 5MB"}
+				/>
+			</div>
+
 			<NoticeText className="mb-4">
 				Please complete the payment through one of these options below!
 			</NoticeText>
@@ -125,4 +137,4 @@ const NoPaper = ({
 		</div>
 	);
 };
-export default NoPaper;
+export default WithPaper;

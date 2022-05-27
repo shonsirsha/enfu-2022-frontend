@@ -7,7 +7,7 @@ import { mediaBreakpoint } from "utils/mediaBreakpoints";
 import FormInput from "components/FormInput";
 import BlueButton from "components/Buttons/BlueButton";
 import { whitespace, validEmail } from "utils/validations";
-import ParticipantsOfDBCC from "components/DBCC/registrations/coaching-session/ParticipantsOfDBCC";
+import WithPaper from "components/DBCC/registrations/coaching-clinic/WithPaper";
 import NoPaper from "components/DBCC/registrations/coaching-clinic/NoPaper";
 import SuccessDBCC from "components/Success/SuccessDBCC";
 
@@ -163,6 +163,7 @@ const FirstStep = ({ handleNext, onChange, details }) => {
 const CoachingClinic = () => {
 	const [anyPaperToBeReviewedStatus, setAnyPaperToBeReviewed] = useState(-1);
 	const [buktiTrfFile, setBuktiTrfFile] = useState(null);
+	const [paperFile, setPaperFile] = useState(null);
 	const [success, setSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
 
@@ -201,6 +202,43 @@ const CoachingClinic = () => {
 	};
 	const onChange = (e) => {
 		setDetails({ ...details, [e.target.name]: e.target.value });
+	};
+
+	const registerWithPaper = async () => {
+		setLoading(true);
+		try {
+			let bodyFormData = new FormData();
+			bodyFormData.append("fullName", fullName);
+			bodyFormData.append("placeDOB", placeDOB);
+			bodyFormData.append("facultyDepartmentBatch", facultyDepartmentBatch);
+			bodyFormData.append("phoneNr", phoneNr);
+			bodyFormData.append("univName", univName);
+			bodyFormData.append("lineId", lineId);
+			bodyFormData.append("gender", gender);
+			bodyFormData.append("email", email);
+			bodyFormData.append("anyPaperToBeReviewed", anyPaperToBeReviewed);
+			bodyFormData.append("buktiTrf", buktiTrfFile);
+			bodyFormData.append("paper", paperFile);
+
+			await axios({
+				method: "post",
+				url: "http://localhost:5000/api/coaching-clinic",
+				headers: { "Content-Type": "multipart/form-data" },
+				data: bodyFormData,
+			});
+
+			setSuccess(true);
+		} catch (e) {
+			if (e.response.status === 409) {
+				alert(`Oops, your email (${email}) has already been registered! 😬 `);
+			} else {
+				console.log(e);
+				alert(
+					`Oops, sorry, an error occured. 😬 Please try to re-submit your registration.\n\nIf this error keeps happening, please report it to us. Error code: ${e.response.status}`
+				);
+			}
+		}
+		setLoading(false);
 	};
 
 	const registerNoPaper = async () => {
@@ -253,6 +291,11 @@ const CoachingClinic = () => {
 			alert("Please fill in all required fields! 😊");
 		} else {
 			if (anyPaperToBeReviewed) {
+				if (!buktiTrfFile || !paperFile) {
+					alert("Please attach all necessary files! 😊");
+				} else {
+					await registerWithPaper();
+				}
 			} else {
 				if (!buktiTrfFile) {
 					alert("Please attach your payment slip! 😊");
@@ -281,12 +324,15 @@ const CoachingClinic = () => {
 							)}
 
 							{anyPaperToBeReviewedStatus === 0 && (
-								<ParticipantsOfDBCC
+								<WithPaper
 									handleNext={handleNext}
-									onChange={onChange}
 									details={details}
 									loading={loading}
+									setBuktiTrfFile={setBuktiTrfFile}
+									buktiTrfFile={buktiTrfFile}
 									handleSubmit={handleSubmit}
+									setPaperFile={setPaperFile}
+									paperFile={paperFile}
 								/>
 							)}
 
