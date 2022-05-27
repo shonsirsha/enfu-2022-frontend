@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 const FormText = styled.p`
@@ -40,21 +40,29 @@ const ChangeButton = styled.button`
 	border: none;
 `;
 
-const FileInput = ({ text, accept = "", ref = "" }) => {
+const FileInput = ({
+	text,
+	accept = "",
+	ref = "",
+	setFile = () => {},
+	file,
+}) => {
 	const inputRef = useRef(ref);
-	const [fileName, setFileName] = useState("");
-	const [fileSelected, setFileSelected] = useState(false);
 
 	const onChange = (e) => {
-		if (e.target.files[0].name) {
-			setFileSelected(true);
-			setFileName(e.target.files[0].name);
+		if (e.target.files[0]) {
+			if (e.target.files[0].size >= 5000000) {
+				alert("Sorry, the file's size is too big, you can't use this file!");
+				e.target.value = "";
+			} else {
+				setFile(e.target.files[0]);
+			}
 		}
 	};
 	return (
 		<div className="d-flex flex-column">
 			<FormText className="mb-2">{text}:</FormText>
-			{!fileSelected ? (
+			{!file ? (
 				<UploadBtn
 					onClick={() => {
 						inputRef.current.click();
@@ -65,7 +73,7 @@ const FileInput = ({ text, accept = "", ref = "" }) => {
 			) : (
 				<div className="d-flex mb-2">
 					<NoticeText className="me-3">
-						File Selected: <b>{fileName}</b>{" "}
+						File Selected: <b>{file.name}</b>{" "}
 					</NoticeText>
 
 					<ChangeButton

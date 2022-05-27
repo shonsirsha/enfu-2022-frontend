@@ -222,7 +222,6 @@ const CoachingSession = () => {
 			});
 
 			setSuccess(true);
-			console.log("Done?", register);
 		} catch (e) {
 			if (e.response.status === 409) {
 				alert(`Oops, your email (${email}) has already been registered! 😬 `);
@@ -234,6 +233,45 @@ const CoachingSession = () => {
 		}
 		setLoading(false);
 	};
+
+	const registerNONDBCC = async () => {
+		setLoading(true);
+		try {
+			let bodyFormData = new FormData();
+			bodyFormData.append("fullName", fullName);
+			bodyFormData.append("placeDOB", placeDOB);
+			bodyFormData.append("facultyDepartmentBatch", facultyDepartmentBatch);
+			bodyFormData.append("phoneNr", phoneNr);
+			bodyFormData.append("univName", univName);
+			bodyFormData.append("lineId", lineId);
+			bodyFormData.append("gender", gender);
+			bodyFormData.append("email", email);
+			bodyFormData.append("dbccParticipant", dbccParticipant);
+			bodyFormData.append("dbccTeamName", "");
+			bodyFormData.append("dbccCodeOfRegistration", "");
+			bodyFormData.append("buktiTrf", buktiTrfFile);
+
+			await axios({
+				method: "post",
+				url: "http://localhost:5000/api/coaching-session",
+				headers: { "Content-Type": "multipart/form-data" },
+				data: bodyFormData,
+			});
+
+			setSuccess(true);
+		} catch (e) {
+			if (e.response.status === 409) {
+				alert(`Oops, your email (${email}) has already been registered! 😬 `);
+			} else {
+				console.log(e);
+				alert(
+					`Oops, sorry, an error occured. 😬 Please try to re-submit your registration.\n\nIf this error keeps happening, please report it to us. Error code: ${e.response.status}`
+				);
+			}
+		}
+		setLoading(false);
+	};
+
 	const handleSubmit = async () => {
 		if (
 			!validEmail(email) ||
@@ -248,12 +286,16 @@ const CoachingSession = () => {
 		} else {
 			if (dbccParticipant) {
 				if (whitespace(dbccTeamName) || whitespace(dbccCodeOfRegistration)) {
-					alert("failed");
+					alert("Please fill in all required fields! 😊");
 				} else {
 					await registerDBCCParticipant();
 				}
 			} else {
-				alert("send with doc!");
+				if (!buktiTrfFile) {
+					alert("Please attach your payment slip! 😊");
+				} else {
+					await registerNONDBCC();
+				}
 			}
 		}
 	};
@@ -288,9 +330,10 @@ const CoachingSession = () => {
 							{isDBCCParticipant === 1 && (
 								<NonParticipantsOfDBCC
 									handleNext={handleNext}
-									onChange={onChange}
 									details={details}
 									loading={loading}
+									setBuktiTrfFile={setBuktiTrfFile}
+									buktiTrfFile={buktiTrfFile}
 									handleSubmit={handleSubmit}
 								/>
 							)}

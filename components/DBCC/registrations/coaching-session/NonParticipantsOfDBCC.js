@@ -32,7 +32,8 @@ const Triangle = styled.div`
 
 const NonParticipantsOfDBCC = ({
 	handleNext,
-	onChange,
+	setBuktiTrfFile,
+	buktiTrfFile,
 	details,
 	handleSubmit,
 	loading,
@@ -88,6 +89,8 @@ const NonParticipantsOfDBCC = ({
 			</div>
 			<div className="mt-3 d-flex w-100 justify-content-between align-items-center">
 				<FileInput
+					setFile={setBuktiTrfFile}
+					file={buktiTrfFile}
 					accept="image/png, image/jpeg, image/jpg"
 					text={"Upload File (payment slip)*"}
 				/>
