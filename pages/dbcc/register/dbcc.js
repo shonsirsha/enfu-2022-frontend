@@ -66,6 +66,7 @@ const Subheader = styled.p`
 const OuterPaymentSectionContainer = styled.div`
 	z-index: 2;
 	padding: 128px 0;
+	padding-bottom: 32px;
 	border-radius: 104px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
@@ -118,7 +119,7 @@ const StyledSemiCircleSmallBottomLeft = styled(StyledSemiCircleSmallLeft)`
 	bottom: 132px;
 `;
 
-const PaymentSection = () => {
+const PaymentSection = ({ onSubmit, setBuktiTrf, buktiTrf }) => {
 	return (
 		<OuterPaymentSectionContainer className="bg-secondary">
 			<InnerPaymentSectionContainer className="position-relative bg-cream d-flex flex-column align-items-center shadow">
@@ -178,14 +179,14 @@ const PaymentSection = () => {
 				<div className="mt-3">
 					<FileInput
 						center
-						setFile={() => {}}
-						file={null}
+						setFile={setBuktiTrf}
+						file={buktiTrf}
 						accept="image/png, image/jpeg, image/jpg"
 						text={"Proof of Payment*"}
 					/>
 				</div>
 
-				<BlueButton className="shadow mt-5" onClick={() => {}}>
+				<BlueButton className="shadow mt-5" onClick={onSubmit}>
 					SUBMIT
 				</BlueButton>
 			</InnerPaymentSectionContainer>
@@ -193,16 +194,24 @@ const PaymentSection = () => {
 	);
 };
 
-const FirstMember = ({ onChange, details }) => {
+const FirstMember = ({
+	onChange,
+	details,
+	setStudentId1,
+	setThreeByFour1,
+	threeByFour1,
+	studentId1,
+}) => {
 	const {
-		fullName,
-		placeDOB,
-		phoneNr,
-		facultyDepartmentBatch,
-		univName,
-		lineId,
-		gender,
-		email,
+		teamName,
+		fullName1,
+		placeDob1,
+		phoneNr1,
+		facultyDepartmentBatch1,
+		univName1,
+		lineId1,
+		gender1,
+		email1,
 	} = details;
 
 	return (
@@ -212,14 +221,14 @@ const FirstMember = ({ onChange, details }) => {
 					onChange={onChange}
 					text={"Team's Name*"}
 					name={"teamName"}
-					value={facultyDepartmentBatch}
+					value={teamName}
 					required
 				/>
 				<FormInput
 					onChange={onChange}
 					text={"Phone Number*"}
 					name={"phoneNr1"}
-					value={phoneNr}
+					value={phoneNr1}
 					required
 				/>
 			</div>
@@ -229,14 +238,14 @@ const FirstMember = ({ onChange, details }) => {
 					text={"Full Name*"}
 					name={"fullName1"}
 					required
-					value={fullName}
+					value={fullName1}
 				/>
 
 				<FormInput
 					onChange={onChange}
 					text={"Line ID"}
-					name="lineId"
-					value={lineId}
+					name="lineId1"
+					value={lineId1}
 				/>
 			</div>
 
@@ -245,7 +254,7 @@ const FirstMember = ({ onChange, details }) => {
 					onChange={onChange}
 					text={"Faculty / Department / Batch*"}
 					name={"facultyDepartmentBatch1"}
-					value={facultyDepartmentBatch}
+					value={facultyDepartmentBatch1}
 					required
 				/>
 
@@ -253,7 +262,7 @@ const FirstMember = ({ onChange, details }) => {
 					onChange={onChange}
 					text={"E-mail*"}
 					name="email1"
-					value={email}
+					value={email1}
 					type={"email"}
 					required
 				/>
@@ -266,7 +275,7 @@ const FirstMember = ({ onChange, details }) => {
 						text={"University / Institute*"}
 						name={"univName1"}
 						required
-						value={univName}
+						value={univName1}
 					/>
 					<div className="mt-lg-3">
 						<FormInput
@@ -274,7 +283,7 @@ const FirstMember = ({ onChange, details }) => {
 							text={"Gender*"}
 							placeholder="Male / Female"
 							name="gender1"
-							value={gender}
+							value={gender1}
 							required
 						/>
 					</div>
@@ -286,22 +295,22 @@ const FirstMember = ({ onChange, details }) => {
 							name={"placeDob1"}
 							placeholder="Jakarta, 04-12-2000"
 							required
-							value={placeDOB}
+							value={placeDob1}
 						/>
 					</div>
 				</div>
 
 				<div className="d-flex flex-column w-lg-50 w-100 mt-lg-0 mt-3">
 					<FileInput
-						setFile={() => {}}
-						file={null}
+						setFile={setThreeByFour1}
+						file={threeByFour1}
 						accept="image/png, image/jpeg, image/jpg"
 						text={"3x4 Photo (Formal)*"}
 					/>
 					<div className="mt-2">
 						<FileInput
-							setFile={() => {}}
-							file={null}
+							setFile={setStudentId1}
+							file={studentId1}
 							accept="image/png, image/jpeg, image/jpg"
 							text={"Student ID*"}
 						/>
@@ -312,16 +321,23 @@ const FirstMember = ({ onChange, details }) => {
 	);
 };
 
-const SecondMember = ({ onChange, details }) => {
+const SecondMember = ({
+	onChange,
+	details,
+	setStudentId2,
+	setThreeByFour2,
+	threeByFour2,
+	studentId2,
+}) => {
 	const {
-		fullName,
-		placeDOB,
-		phoneNr,
-		facultyDepartmentBatch,
-		univName,
-		lineId,
-		gender,
-		email,
+		fullName2,
+		placeDob2,
+		phoneNr2,
+		facultyDepartmentBatch2,
+		univName2,
+		lineId2,
+		gender2,
+		email2,
 	} = details;
 
 	return (
@@ -332,7 +348,7 @@ const SecondMember = ({ onChange, details }) => {
 					text={"Full Name"}
 					name={"fullName2"}
 					required
-					value={fullName}
+					value={fullName2}
 				/>
 
 				<FormInput
@@ -341,7 +357,7 @@ const SecondMember = ({ onChange, details }) => {
 					name={"placeDob2"}
 					placeholder="Jakarta, 04-12-2000"
 					required
-					value={placeDOB}
+					value={placeDob2}
 				/>
 			</div>
 
@@ -350,7 +366,7 @@ const SecondMember = ({ onChange, details }) => {
 					onChange={onChange}
 					text={"Faculty / Department / Batch"}
 					name={"facultyDepartmentBatch2"}
-					value={facultyDepartmentBatch}
+					value={facultyDepartmentBatch2}
 					required
 				/>
 
@@ -358,7 +374,7 @@ const SecondMember = ({ onChange, details }) => {
 					onChange={onChange}
 					text={"Phone Number"}
 					name={"phoneNr2"}
-					value={phoneNr}
+					value={phoneNr2}
 					required
 				/>
 			</div>
@@ -369,13 +385,13 @@ const SecondMember = ({ onChange, details }) => {
 					text={"University / Institute"}
 					name={"univName2"}
 					required
-					value={univName}
+					value={univName2}
 				/>
 				<FormInput
 					onChange={onChange}
 					text={"Line ID"}
 					name="lineId2"
-					value={lineId}
+					value={lineId2}
 				/>
 			</div>
 
@@ -385,14 +401,14 @@ const SecondMember = ({ onChange, details }) => {
 					text={"Gender"}
 					placeholder="Male / Female"
 					name="gender2"
-					value={gender}
+					value={gender2}
 					required
 				/>
 				<FormInput
 					onChange={onChange}
 					text={"E-mail"}
 					name="email2"
-					value={email}
+					value={email2}
 					type={"email"}
 					required
 				/>
@@ -400,15 +416,15 @@ const SecondMember = ({ onChange, details }) => {
 
 			<div className="d-flex flex-lg-row flex-column mt-3">
 				<FileInput
-					setFile={() => {}}
-					file={null}
+					setFile={setThreeByFour2}
+					file={threeByFour2}
 					accept="image/png, image/jpeg, image/jpg"
 					text={"3x4 Photo (Formal)*"}
 				/>
 				<div className="ms-lg-5 mt-lg-0 mt-3">
 					<FileInput
-						setFile={() => {}}
-						file={null}
+						setFile={setStudentId2}
+						file={studentId2}
 						accept="image/png, image/jpeg, image/jpg"
 						text={"Student ID*"}
 					/>
@@ -418,16 +434,23 @@ const SecondMember = ({ onChange, details }) => {
 	);
 };
 
-const ThirdMember = ({ onChange, details }) => {
+const ThirdMember = ({
+	onChange,
+	details,
+	setStudentId3,
+	setThreeByFour3,
+	threeByFour3,
+	studentId3,
+}) => {
 	const {
-		fullName,
-		placeDOB,
-		phoneNr,
-		facultyDepartmentBatch,
-		univName,
-		lineId,
-		gender,
-		email,
+		fullName3,
+		placeDob3,
+		phoneNr3,
+		facultyDepartmentBatch3,
+		univName3,
+		lineId3,
+		gender3,
+		email3,
 	} = details;
 
 	return (
@@ -438,7 +461,7 @@ const ThirdMember = ({ onChange, details }) => {
 					text={"Full Name"}
 					name={"fullName3"}
 					required
-					value={fullName}
+					value={fullName3}
 				/>
 
 				<FormInput
@@ -447,7 +470,7 @@ const ThirdMember = ({ onChange, details }) => {
 					name={"placeDob3"}
 					placeholder="Jakarta, 04-12-2000"
 					required
-					value={placeDOB}
+					value={placeDob3}
 				/>
 			</div>
 
@@ -456,7 +479,7 @@ const ThirdMember = ({ onChange, details }) => {
 					onChange={onChange}
 					text={"Faculty / Department / Batch"}
 					name={"facultyDepartmentBatch3"}
-					value={facultyDepartmentBatch}
+					value={facultyDepartmentBatch3}
 					required
 				/>
 
@@ -464,7 +487,7 @@ const ThirdMember = ({ onChange, details }) => {
 					onChange={onChange}
 					text={"Phone Number"}
 					name={"phoneNr3"}
-					value={phoneNr}
+					value={phoneNr3}
 					required
 				/>
 			</div>
@@ -475,13 +498,13 @@ const ThirdMember = ({ onChange, details }) => {
 					text={"University / Institute"}
 					name={"univName3"}
 					required
-					value={univName}
+					value={univName3}
 				/>
 				<FormInput
 					onChange={onChange}
 					text={"Line ID"}
 					name={"lineId3"}
-					value={lineId}
+					value={lineId3}
 				/>
 			</div>
 
@@ -491,14 +514,14 @@ const ThirdMember = ({ onChange, details }) => {
 					text={"Gender"}
 					placeholder="Male / Female"
 					name={"gender3"}
-					value={gender}
+					value={gender3}
 					required
 				/>
 				<FormInput
 					onChange={onChange}
 					text={"E-mail"}
 					name={"email3"}
-					value={email}
+					value={email3}
 					type={"email"}
 					required
 				/>
@@ -506,15 +529,15 @@ const ThirdMember = ({ onChange, details }) => {
 
 			<div className="d-flex flex-lg-row flex-column mt-3">
 				<FileInput
-					setFile={() => {}}
-					file={null}
+					setFile={setThreeByFour3}
+					file={threeByFour3}
 					accept="image/png, image/jpeg, image/jpg"
 					text={"3x4 Photo (Formal)*"}
 				/>
 				<div className="ms-lg-5 mt-lg-0 mt-3">
 					<FileInput
-						setFile={() => {}}
-						file={null}
+						setFile={setStudentId3}
+						file={studentId3}
 						accept="image/png, image/jpeg, image/jpg"
 						text={"Student ID*"}
 					/>
@@ -530,109 +553,176 @@ const CoachingSession = () => {
 	const [success, setSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-	const [details, setDetails] = useState({
-		fullName: "",
-		placeDOB: "",
-		phoneNr: "",
-		facultyDepartmentBatch: "",
-		univName: "",
-		lineId: "",
-		gender: "",
-		email: "",
-		dbccParticipant: false,
-		dbccTeamName: "",
-		dbccCodeOfRegistration: "",
+	const [buktiTrf, setBuktiTrf] = useState(null);
+
+	const [threeByFour_1, setThreeByFour_1] = useState(null);
+	const [threeByFour_2, setThreeByFour_2] = useState(null);
+	const [threeByFour_3, setThreeByFour_3] = useState(null);
+
+	const [student_id_1, setStudent_id_1] = useState(null);
+	const [student_id_2, setStudent_id_2] = useState(null);
+	const [student_id_3, setStudent_id_3] = useState(null);
+
+	const [detailMember1, setDetailMember1] = useState({
+		teamName: "",
+		phoneNr1: "",
+		fullName1: "",
+		lineId1: "",
+		facultyDepartmentBatch1: "",
+		email1: "",
+		univName1: "",
+		gender1: "",
+		placeDob1: "",
+	});
+
+	const [detailMember2, setDetailMember2] = useState({
+		phoneNr2: "",
+		fullName2: "",
+		lineId2: "",
+		facultyDepartmentBatch2: "",
+		email2: "",
+		univName2: "",
+		gender2: "",
+		placeDob2: "",
+	});
+
+	const [detailMember3, setDetailMember3] = useState({
+		phoneNr3: "",
+		fullName3: "",
+		lineId3: "",
+		facultyDepartmentBatch3: "",
+		email3: "",
+		univName3: "",
+		gender3: "",
+		placeDob3: "",
 	});
 
 	const {
-		fullName,
-		placeDOB,
-		phoneNr,
-		facultyDepartmentBatch,
-		univName,
-		lineId,
-		gender,
-		email,
-		dbccParticipant,
-		dbccTeamName,
-		dbccCodeOfRegistration,
-	} = details;
+		teamName,
+		phoneNr1,
+		fullName1,
+		lineId1,
+		facultyDepartmentBatch1,
+		email1,
+		univName1,
+		gender1,
+		placeDob1,
+	} = detailMember1;
 
-	const handleNext = (num) => {
-		setIsDBCCParticipant(num);
+	const {
+		phoneNr2,
+		fullName2,
+		lineId2,
+		facultyDepartmentBatch2,
+		email2,
+		univName2,
+		gender2,
+		placeDob2,
+	} = detailMember2;
 
-		if (num === 0) {
-			setDetails({ ...details, dbccParticipant: true });
-		} else if (num === 1) {
-			setDetails({ ...details, dbccParticipant: false });
-		}
+	const {
+		phoneNr3,
+		fullName3,
+		lineId3,
+		facultyDepartmentBatch3,
+		email3,
+		univName3,
+		gender3,
+		placeDob3,
+	} = detailMember3;
+
+	const onChangeMember1 = (e) => {
+		setDetailMember1({ ...detailMember1, [e.target.name]: e.target.value });
 	};
-	const onChange = (e) => {
-		setDetails({ ...details, [e.target.name]: e.target.value });
-	};
-
-	const registerDBCCParticipant = async () => {
-		setLoading(true);
-		try {
-			const register = await axios({
-				method: "post",
-				url: "http://localhost:5000/api/coaching-session",
-				data: {
-					fullName,
-					placeDOB,
-					facultyDepartmentBatch,
-					phoneNr,
-					univName,
-					lineId,
-					gender,
-					email,
-					dbccParticipant,
-					dbccTeamName,
-					dbccCodeOfRegistration,
-				},
-			});
-
-			setSuccess(true);
-		} catch (e) {
-			if (e.response.status === 409) {
-				alert(`Oops, your email (${email}) has already been registered! 😬 `);
-			} else {
-				alert(
-					`Oops, sorry, an error occured. 😬 Please try to re-submit your registration.\n\nIf this error keeps happening, please report it to us. Error code: ${e.response.status}`
-				);
-			}
-		}
-		setLoading(false);
+	const onChangeMember2 = (e) => {
+		setDetailMember2({ ...detailMember2, [e.target.name]: e.target.value });
 	};
 
-	const registerNONDBCC = async () => {
-		setLoading(true);
+	const onChangeMember3 = (e) => {
+		setDetailMember3({ ...detailMember3, [e.target.name]: e.target.value });
+	};
+
+	const uploadImages = async () => {
+		//TODO: DO THIS
 		try {
 			let bodyFormData = new FormData();
-			bodyFormData.append("fullName", fullName);
-			bodyFormData.append("placeDOB", placeDOB);
-			bodyFormData.append("facultyDepartmentBatch", facultyDepartmentBatch);
-			bodyFormData.append("phoneNr", phoneNr);
-			bodyFormData.append("univName", univName);
-			bodyFormData.append("lineId", lineId);
-			bodyFormData.append("gender", gender);
-			bodyFormData.append("email", email);
-			bodyFormData.append("dbccParticipant", dbccParticipant);
-			bodyFormData.append("dbccTeamName", "");
-			bodyFormData.append("dbccCodeOfRegistration", "");
-			bodyFormData.append("buktiTrf", buktiTrfFile);
 
-			await axios({
+			bodyFormData.append("student_id_1", student_id_1);
+			bodyFormData.append("threeByFour_1", threeByFour_1);
+			bodyFormData.append("buktiTrf", buktiTrf);
+
+			if (student_id_2) {
+				bodyFormData.append("student_id_2", student_id_2);
+			}
+			if (student_id_3) {
+				bodyFormData.append("student_id_3", student_id_3);
+			}
+			if (threeByFour_2) {
+				bodyFormData.append("threeByFour_2", threeByFour_2);
+			}
+			if (threeByFour_3) {
+				bodyFormData.append("threeByFour_3", threeByFour_3);
+			}
+
+			const res = await axios({
 				method: "post",
-				url: "http://localhost:5000/api/coaching-session",
+				url: "http://localhost:5000/api/dbcc/images",
 				headers: { "Content-Type": "multipart/form-data" },
 				data: bodyFormData,
 			});
+			return res.data.teamId;
+		} catch (e) {
+			alert(
+				`Oops, sorry, an error occured. 😬 Please try to re-submit your registration.\n\nIf this error keeps happening, please report it to us. Error code: ${e.response.status}`
+			);
+		}
 
+		console.log(res);
+	};
+
+	const register = async (teamId) => {
+		try {
+			await axios({
+				method: "post",
+				url: "http://localhost:5000/api/dbcc",
+				data: {
+					teamId,
+					teamName,
+					phoneNr1,
+					fullName1,
+					lineId1,
+					facultyDepartmentBatch1,
+					email1,
+					univName1,
+					gender1,
+					placeDob1,
+					phoneNr2,
+					fullName2,
+					lineId2,
+					facultyDepartmentBatch2,
+					email2,
+					univName2,
+					gender2,
+					placeDob2,
+					phoneNr3,
+					fullName3,
+					lineId3,
+					facultyDepartmentBatch3,
+					email3,
+					univName3,
+					gender3,
+					placeDob3,
+				},
+			});
 			setSuccess(true);
 		} catch (e) {
-			if (e.response.status === 409) {
-				alert(`Oops, your email (${email}) has already been registered! 😬 `);
+			if (
+				e.response.status === 409 &&
+				e.response.data.error === "email already registered"
+			) {
+				alert(
+					`Oops, your team leader's email (${email1}) has already been registered! 😬 `
+				);
 			} else {
 				console.log(e);
 				alert(
@@ -640,35 +730,33 @@ const CoachingSession = () => {
 				);
 			}
 		}
-		setLoading(false);
 	};
-
 	const handleSubmit = async () => {
+		setLoading(true);
+
 		if (
-			!validEmail(email) ||
-			whitespace(fullName) ||
-			whitespace(placeDOB) ||
-			whitespace(facultyDepartmentBatch) ||
-			whitespace(univName) ||
-			whitespace(phoneNr) ||
-			whitespace(gender)
+			!validEmail(email1) ||
+			whitespace(teamName) ||
+			whitespace(fullName1) ||
+			whitespace(univName1) ||
+			whitespace(phoneNr1) ||
+			whitespace(gender1) ||
+			whitespace(facultyDepartmentBatch1) ||
+			whitespace(placeDob1)
 		) {
 			alert("Please fill in all required fields! 😊");
 		} else {
-			if (dbccParticipant) {
-				if (whitespace(dbccTeamName) || whitespace(dbccCodeOfRegistration)) {
-					alert("Please fill in all required fields! 😊");
-				} else {
-					await registerDBCCParticipant();
-				}
+			if (!buktiTrf || !threeByFour_1 || !student_id_1) {
+				alert(
+					"Please attach all of the needed documents (payment slip, leader's 3x4 photo, and leader's student ID)! 😊"
+				);
 			} else {
-				if (!buktiTrfFile) {
-					alert("Please attach your payment slip! 😊");
-				} else {
-					await registerNONDBCC();
-				}
+				const teamId = await uploadImages();
+				console.log(teamId);
+				await register(teamId);
 			}
 		}
+		setLoading(false);
 	};
 	return (
 		<>
@@ -684,16 +772,41 @@ const CoachingSession = () => {
 						<Container>
 							<FormContainer>
 								<Subheader className="mb-4 text-danger">Teams Leader</Subheader>
-								<FirstMember onChange={onChange} details={details} />
-								<Subheader className="mb-4 text-danger">2nd Member</Subheader>
-								<SecondMember onChange={onChange} details={details} />
+								<FirstMember
+									threeByFour1={threeByFour_1}
+									setThreeByFour1={setThreeByFour_1}
+									studentId1={student_id_1}
+									setStudentId1={setStudent_id_1}
+									onChange={onChangeMember1}
+									details={detailMember1}
+								/>
+								<Subheader className="my-4 text-danger">2nd Member</Subheader>
+								<SecondMember
+									threeByFour2={threeByFour_2}
+									setThreeByFour2={setThreeByFour_2}
+									setStudentId2={setStudent_id_2}
+									studentId2={student_id_2}
+									onChange={onChangeMember2}
+									details={detailMember2}
+								/>
 								<Subheader className="text-danger my-4">3rd Member</Subheader>
-								<ThirdMember onChange={onChange} details={details} />
+								<ThirdMember
+									threeByFour3={threeByFour_3}
+									setThreeByFour3={setThreeByFour_3}
+									setStudentId3={setStudent_id_3}
+									studentId3={student_id_3}
+									onChange={onChangeMember3}
+									details={detailMember3}
+								/>
 							</FormContainer>
 						</Container>
 					</OuterContainer>
 
-					<PaymentSection />
+					<PaymentSection
+						onSubmit={handleSubmit}
+						setBuktiTrf={setBuktiTrf}
+						buktiTrf={buktiTrf}
+					/>
 				</BlueContainer>
 			)}
 		</>
