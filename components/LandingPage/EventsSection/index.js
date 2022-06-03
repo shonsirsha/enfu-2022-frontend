@@ -36,6 +36,7 @@ const InnerContainer = styled.div`
 
 const Header = styled.h2`
 	font-family: TT_Ramilas;
+	font-weight: 600;
 	font-size: 64px;
 	line-height: 64px;
 `;

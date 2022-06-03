@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/root.scss";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function Main({ Component, pageProps }) {
 	NProgress.configure({
