@@ -35,6 +35,18 @@ body {
 
 @font-face {
 	font-family: "Poppins";
+	src: url("./fonts/Poppins-SemiBold.ttf") format("truetype");
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "Poppins";
+	src: url("./fonts/Poppins-Medium.ttf") format("truetype");
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: "Poppins";
 	src: url("./fonts/Poppins-Regular.ttf") format("truetype");
 	font-weight: 400;
 }
@@ -44,12 +56,6 @@ body {
 	src: url("./fonts/Poppins-Italic.ttf") format("truetype");
 	font-weight: 400;
 	font-style: italic;
-}
-
-@font-face {
-	font-family: "Poppins";
-	src: url("./fonts/Poppins-Medium.ttf") format("truetype");
-	font-weight: 500;
 }
 
 @font-face {

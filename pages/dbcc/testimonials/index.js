@@ -89,18 +89,18 @@ const CardContainer = styled.div`
 	border-radius: 32px;
 	padding: 56px;
 	max-width: 1090px;
-	min-height: 459px;
+	min-height: 619px;
 
 	@media ${mediaBreakpoint.down.lg} {
 		padding: 24px;
-		min-height: 700px;
+		min-height: 840px;
 		padding-bottom: 64px;
 	}
 
 	@media ${mediaBreakpoint.down.md} {
 		padding: 24px;
 
-		min-height: 950px;
+		min-height: 1020px;
 	}
 `;
 
@@ -162,7 +162,7 @@ const TestimonialCard = ({
 					/>
 				</PhotoContainer>
 
-				<div className="d-flex flex-column ms-lg-5 me-0">
+				<div className="d-flex flex-column ms-lg-5 me-0 mt-lg-0 mt-3">
 					<NameText className="text-danger">{name}</NameText>
 					<TeamNameText className="mt-2 text-white">{teamName}</TeamNameText>
 					<TestimonialText className="mt-3">{testimonialText}</TestimonialText>
@@ -204,6 +204,41 @@ const Testimonials = () => {
 							testimonialText={`Taking part in being a DBCC participant is one of the best decisions and experiences for our team in 2021. The entire series at DBCC provides new knowledge and insights in solving Business Cases from real multinational companies, which of course inspires critical and creative thinking skills. It was also a big surprise for us to be ranked 3rd after competing with dozens of other teams from various countries.
                             `}
 							image={`2`}
+						/>
+					</div>
+
+					<div className="cardWrapper">
+						<TestimonialCard
+							name="Schalke Anindya Putri"
+							teamName="SL Venture Team - Top 10th Finalist DBCC 2021"
+							testimonialText={`The impression of participating DBCC is very pleasant because the case is very unique, it is rare to find such a case. So my team and I can really explore things and work well together too! The message for you who have never participated in DBCC must join because this year's partner case will be even more exciting!
+
+		First, the main attraction of the DBCC is the very interesting case, so not only follow the BCC, but learn during each series of competitions. Secondly, we are also given various challenges outside of the cases we have to work on, such as having a pre-event to practice our case-solving abilities, and in the final we also have to work on a minicase that is no less exciting. Finally, of course, theprizes are very interesting to get!
+                            `}
+							image={`3`}
+						/>
+					</div>
+
+					<div className="cardWrapper">
+						<TestimonialCard
+							name="Muhammad Akbar"
+							teamName="AIU Geek - International participant from Malaysia"
+							testimonialText={`DBCC was my first experience joining any business cas  competition. Here I learned a lot how to expose our problem solving skill in determining business problem, how to find the solution, and how to execute our solution.
+
+Our team was having a great experience where we share different thoughts each other who are from different fields. Many new things I knew even though our team couldn’t step to a further stage of this competition. One thing different between DBCC and other business case competition was DBCC provided participants experienced speakers coaching how to solve the case. Hopefully DBCC always continue every year.`}
+							image={`4`}
+						/>
+					</div>
+
+					<div className="cardWrapper">
+						<TestimonialCard
+							name="Fatimah Tuz Zohra Proteeti"
+							teamName="Ko.nuh.suh Team - Internasional participant from IBA-JU Business Club Bangladesh Internasional participant from IBA-JU Business Club Bangladesh"
+							testimonialText={`The impression of participating DBCC is very pleasant because the case is very unique, it is rare to find such a case. So my team and I can really explore things and work well together too! The message for you who have never participated in DBCC must join because this year's partner case will be even more exciting!
+
+		First, the main attraction of the DBCC is the very interesting case, so not only follow the BCC, but learn during each series of competitions. Secondly, we are also given various challenges outside of the cases we have to work on, such as having a pre-event to practice our case-solving abilities, and in the final we also have to work on a minicase that is no less exciting. Finally, of course, theprizes are very interesting to get!
+                            `}
+							image={`5`}
 						/>
 					</div>
 				</Slider>
