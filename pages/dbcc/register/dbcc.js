@@ -48,6 +48,7 @@ const Container = styled.div`
 
 const Header = styled.h1`
 	font-family: TT_Ramilas;
+	font-weight: 700;
 	font-size: 48px;
 	line-height: 48px;
 
@@ -60,6 +61,8 @@ const Header = styled.h1`
 const Subheader = styled.p`
 	font-family: TT_Ramilas;
 	font-size: 24px;
+	font-weight: 700;
+
 	line-height: 24px;
 `;
 

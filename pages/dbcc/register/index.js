@@ -24,7 +24,7 @@ const Container = styled.div`
 
 const Header = styled.h1`
 	font-family: TT_Ramilas;
-	font-weight: 600;
+	font-weight: 700;
 	font-size: 56px;
 	letter-spacing: 0.5px;
 

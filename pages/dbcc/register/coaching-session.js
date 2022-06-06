@@ -43,6 +43,7 @@ const Header = styled.h1`
 	font-family: TT_Ramilas;
 	font-size: 48px;
 	line-height: 48px;
+	font-weight: 700;
 
 	@media ${mediaBreakpoint.down.md} {
 		font-size: 32px;

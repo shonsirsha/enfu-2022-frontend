@@ -29,6 +29,7 @@ const InnerContainer = styled.div`
 const Header = styled.h1`
 	font-family: TT_Ramilas;
 	font-size: 64px;
+	font-weight: 700;
 	line-height: 64px;
 	z-index: 3;
 	& span {
