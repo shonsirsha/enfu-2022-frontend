@@ -26,25 +26,21 @@ const FooterContainer = styled.div`
 	}
 `;
 
-const RedContainer = styled.div`
-	width: 100%;
-	height: 40px;
-	border-top-left-radius: 48px;
-	border-top-right-radius: 48px;
+const Separator = styled.div`
+	height: 90px;
+	width: 4px;
+	background: #000;
 `;
 
 const Header = styled.h2`
-	font-family: Poppins;
-	font-size: 32px;
-	line-height: 32px;
-	font-weight: 400;
+	font-family: TT_Ramilas;
+	font-size: 40px;
+	font-weight: 600;
+	line-height: 40px;
 
-	& span {
-		font-weight: 600;
-	}
-
-	& .enfu {
-		font-weight: 600;
+	@media ${mediaBreakpoint.down.md} {
+		font-size: 32px;
+		line-height: 32px;
 	}
 `;
 
@@ -56,7 +52,7 @@ const TextLink = styled.a`
 
 const DetailText = styled.p`
 	font-family: Poppins;
-	font-weight: 400;
+	font-weight: 600;
 	font-style: Italic;
 	font-size: 14px;
 `;
@@ -82,7 +78,18 @@ const DiscalimerText = styled.p`
 	width: 300px;
 `;
 
-const FooterSection = () => {
+const ImageContainer = styled.div`
+	width: 90px;
+	height: 90px;
+	position: relative;
+	flex-shrink: 0;
+	@media ${mediaBreakpoint.down.md} {
+		font-size: 40px;
+		line-height: 40px;
+	}
+`;
+
+const FooterSectionDBCC = () => {
 	const [email, setEmail] = useState("");
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");
@@ -112,8 +119,10 @@ const FooterSection = () => {
 		setLoading(false);
 	};
 	return (
-		<StyledContainer className="bg-secondary d-flex flex-column align-items-center justify-content-center">
-			<RedContainer className="bg-danger" />
+		<StyledContainer
+			id="contactus"
+			className="bg-cream d-flex flex-column align-items-center justify-content-center"
+		>
 			<FooterContainer className="bg-cream w-100">
 				<div className="w-100 d-flex justify-content-between align-items-center flex-lg-row flex-column">
 					<div className="d-flex flex-column mb-lg-0 mb-3">
@@ -133,7 +142,7 @@ const FooterSection = () => {
 							<Image src={InstagramLogo} width={20} height={20} alt="Logo" />
 							<TextLink
 								className="ms-1 text-black"
-								href="https://line.me/ti/p/@enfutionundip"
+								href="https://instagram.com/enfutionundip"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
@@ -145,11 +154,11 @@ const FooterSection = () => {
 							<Image src={EmailLogo} width={24} height={20} alt="Logo" />
 							<TextLink
 								className="ms-1 text-black"
-								href="https://line.me/ti/p/@enfutionundip"
+								href="mailto:info.DBCC2022@gmail.com"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								undip.enfution@gmail.com
+								info.DBCC2022@gmail.com
 							</TextLink>
 						</div>
 
@@ -165,22 +174,29 @@ const FooterSection = () => {
 							</TextLink>
 						</div>
 					</div>
-					<div className="d-flex flex-column align-items-center mb-lg-0 mb-3">
-						<div style={{ width: 132, height: 132 }}>
-							<Image src={EnfuLogo} alt="Logo Enfu" />
-						</div>
-						<Header className="text-center my-3 my-lg-0">
-							The <span className="text-orange">14th</span>{" "}
-							<span className="enfu">ENFUTION</span> 2022
-						</Header>
+					<div className="d-flex flex-column align-items-center mb-lg-0 mb-3 mt-lg-0 mt-3">
+						<div className="d-flex align-items-center flex-lg-row flex-column">
+							<ImageContainer>
+								<Image
+									src={"/assets/dbcclogolarge.png"}
+									layout="fill"
+									alt="Logo"
+								/>
+							</ImageContainer>
 
-						<DetailText className="mt-1 text-lg-start text-center">
-							“Synchronizing Youth Competence in Hyperconnected Era”
+							<Separator className="mx-4 d-none d-lg-block" />
+							<Header className="mt-lg-0 mt-4 text-lg-start text-center">
+								DIPONEGORO BUSINESS <br /> CASE COMPETITION{" "}
+								<span className="text-orange">2022</span>
+							</Header>
+						</div>
+						<DetailText className="text-danger mt-3 text-lg-start text-center">
+							{`"Eternal Economic Prosperity by Maximising Smart Technology"`}
 						</DetailText>
 					</div>
 
 					<div className="d-flex flex-column">
-						<SubscribeHeader className="ms-lg-auto mb-3 mx-auto mx-lg-0 text-end">
+						<SubscribeHeader className="ms-lg-auto mb-3 mx-auto mx-lg-0 text-lg-end text-center">
 							Subscribe to
 							<br /> The 13th Enfution
 						</SubscribeHeader>
@@ -228,4 +244,4 @@ const FooterSection = () => {
 	);
 };
 
-export default FooterSection;
+export default FooterSectionDBCC;

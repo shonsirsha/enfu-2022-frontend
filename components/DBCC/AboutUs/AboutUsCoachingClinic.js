@@ -5,10 +5,7 @@ import HorizontalTimeLine from "components/TimeLines/HorizontalTimeLine";
 import MyButton from "components/Buttons/MyButton";
 import Link from "next/link";
 import NavigationButton from "components/Buttons/Buttons";
-const OuterContainer = styled.div`
-	min-height: 100vh;
-	padding-bottom: 120px;
-`;
+const OuterContainer = styled.div``;
 
 const InnerContainer = styled.div`
 	min-height: 100vh;

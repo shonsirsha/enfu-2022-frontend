@@ -33,7 +33,6 @@ export default function Home() {
 					<TimelineSection />
 					<ForewordSection />
 					<SponsorSection />
-					<FooterSection />
 				</>
 			)}
 		</>
