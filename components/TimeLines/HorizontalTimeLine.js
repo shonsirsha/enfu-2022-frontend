@@ -15,11 +15,19 @@ const Container = styled.div`
 		.pointStrandInner:last-child .textContainer {
 			margin-left: -80px;
 		}
+
+		.rev {
+			margin-bottom: -130px;
+		}
 	}
 
 	@media only screen and (max-width: 1250px) {
 		& .pointsContainer {
 			flex-direction: column;
+
+			.rev {
+				margin-bottom: 0;
+			}
 		}
 
 		& .pointStrand {
@@ -51,7 +59,7 @@ const DateText = styled.p`
 const TextContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin-left: -180px;
+	margin-left: -100px;
 
 	@media only screen and (max-width: 1250px) {
 		margin: 0;
@@ -62,12 +70,13 @@ const DescriptionText = styled.p`
 	font-family: Poppins;
 	font-weight: 400;
 	margin-left: 0;
+	max-width: ${(props) => (props.small ? `140px` : `auto`)};
 	font-style: Italic;
 `;
 
 const Strand = styled.div`
 	height: 6px;
-	width: 200px;
+	width: 120px;
 	background: black;
 	margin-left: -4px;
 	z-index: 1;
@@ -79,10 +88,23 @@ const Strand = styled.div`
 	}
 `;
 
-const PointStrand = ({ className, data, last = false }) => (
-	<div className={`d-flex flex-column pointStrandInner flex-column `}>
+const OuterTextContainer = styled.div`
+	margin-top: ${(props) => (props.small ? `100px` : `0`)};
+
+	@media only screen and (max-width: 1250px) {
+		margin: 0;
+	}
+`;
+
+const PointStrand = ({ className, data, ix, small, last = false }) => (
+	<OuterTextContainer
+		small={small ? 1 : 0}
+		className={`d-flex pointStrandInner ${
+			ix % 2 === 0 ? `flex-lg-column-reverse flex-column rev` : `flex-column`
+		} `}
+	>
 		<TextContainer className="justify-content-center textContainer align-items-center mb-lg-3 my-lg-0 mt-4 mb-4">
-			<DateText>
+			<DateText className="text-center">
 				{data.dateStart && (
 					<>
 						{data.dateStart} <span>-</span>{" "}
@@ -90,14 +112,17 @@ const PointStrand = ({ className, data, last = false }) => (
 				)}
 				{data.dateEnd}
 			</DateText>
-			<DescriptionText>{data.text}</DescriptionText>
+
+			<DescriptionText className="text-center" small={small}>
+				{data.text}
+			</DescriptionText>
 		</TextContainer>
 
 		<div className={className}>
 			<Point className="point" />
 			{!last && <Strand />}
 		</div>
-	</div>
+	</OuterTextContainer>
 );
 
 const HorizontalTimeLine = ({ data = [], className }) => {
@@ -106,8 +131,10 @@ const HorizontalTimeLine = ({ data = [], className }) => {
 			<div className="pointsContainer d-flex align-items-center">
 				{data.map((z, ix) => (
 					<PointStrand
+						ix={ix}
 						key={z.id}
 						data={z}
+						small={z.small ? z.small : false}
 						last={data.length - 1 === ix}
 						className="pointStrand d-flex align-items-center"
 					/>

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { mediaBreakpoint } from "utils/mediaBreakpoints";
 import HorizontalTimeLine from "components/TimeLines/HorizontalTimeLine";
 import MyButton from "components/Buttons/MyButton";
 import Link from "next/link";
+import NavigationButton from "components/Buttons/Buttons";
 const OuterContainer = styled.div`
 	min-height: 100vh;
 	padding-bottom: 120px;
@@ -14,14 +15,14 @@ const InnerContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	padding-top: 0;
 
 	& .dbccContainer {
 		z-index: 3;
 		margin-bottom: -48px;
 	}
 	overflow-x: hidden;
-	padding: 48px 64px;
-	padding-left: 0;
+	padding-bottom: 120px;
 `;
 
 const Header = styled.h2`
@@ -48,9 +49,7 @@ const AboutUsText = styled.p`
 
 const AboutUsContainer = styled.div`
 	padding: 64px;
-
-	border-top-right-radius: 140px;
-	border-bottom-right-radius: 140px;
+	border-radius: 100px;
 `;
 
 const TimelineTitleText = styled.p`
@@ -74,63 +73,127 @@ line-height; 18px;
 text-transform: uppercase;
 `;
 
+const Circle = styled.div`
+	width: 120px;
+	height 340px;
+    border-radius: 100%;
+    position: absolute;
+    left: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+`;
+
+const CircleRight = styled.div`
+	width: 120px;
+	height 340px;
+    border-radius: 100%;
+    position: absolute;
+    left: unset;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+`;
+
 const AboutUsCoachingSession = () => {
+	const [timelineShown, setTimelineShown] = useState("small");
+
+	const handleClick = () => {
+		setTimelineShown(timelineShown === "small" ? "big" : "small");
+	};
+
 	const timelineDbccSmall = [
 		{
 			dateStart: "16 JUL",
-			dateEnd: "31 OCT 2022",
+			dateEnd: "7 SEPT 2022",
 			text: "Registration",
 		},
 
 		{
 			dateStart: null,
-			dateEnd: "5 NOV 2022",
-			text: "Coaching Clinic",
+			dateEnd: "10 SEPT 2022",
+			text: "D-Day Coaching Session",
 		},
 	];
+
+	const timelineComplete = [
+		{
+			dateStart: "16 JUL",
+			dateEnd: "20 JUL 2022",
+			text: "Early Bird Registration",
+		},
+
+		{
+			dateStart: null,
+			dateEnd: "28 OCT 2022",
+			text: "Open Registration",
+		},
+		{
+			dateStart: null,
+			dateEnd: "31 OCT 2022",
+			text: "Close Registration",
+		},
+	];
+
 	return (
 		<OuterContainer className="bg-cream ">
 			<InnerContainer className="bg-secondary">
-				<AboutUsContainer className=" bg-orange align-items-center justify-content-center w-100 position-relative">
-					<Container className=" d-flex flex-column justify-content-center mx-auto">
-						<Header className="text-center">
-							<span className="text-cream">COACHING</span> CLINIC
-						</Header>
-						<AboutUsText className="my-5 text-cream">
-							<b className="text-black">Coaching Clinic</b> is a new innovation
-							from DBCC. The participants of this event are only{" "}
-							<b className="text-black">for 20 first buyers teams</b> of
-							coaching clinic and also participate in the DBCC event.
-							Participants will discuss one on one with the best professionals
-							regarding the papers submitted or ever made by participants. The
-							paper will be reviewed about strengths and weaknesses that need to
-							be improved. In addition, participants will also be given direct
-							guidance to improve the quality of analyzing and solving business
-							problems. The question and answer session will also be more open
-							to each other so it is hoped that participants can really
-							understand and get best insights. So don{"'"}t miss this awesome
-							opportunity!
-						</AboutUsText>
+				<Container>
+					<AboutUsContainer className=" bg-cream align-items-center justify-content-center w-100 position-relative">
+						<Circle className="bg-secondary " />
+						<CircleRight className="bg-secondary" />
+						<Container className=" d-flex flex-column justify-content-center mx-auto">
+							<Header className="text-center">COACHING SESSION</Header>
+							<AboutUsText className="my-5">
+								<b className="text-orange">Coaching Session</b> is a pre-event
+								from DBCC in form of workshop, which is an innovation from the
+								14th ENFUTION. Participants of this event can come from within
+								and outside the country, can also from outside DBCC
+								participants. Participants will discuss and also be guided by a
+								great mentor to solve business cases excellently. The event will
+								also facilitate participants by giving case to be solved in the{" "}
+								<b className="text-orange">{`"One Day Case"`} </b>
+								segment and present those case solution in{" "}
+								<b className="text-orange">{`"Case Analysis"`}</b> segment. In
+								this event there will be three winner and get a prize. So, for
+								those interested in solving business cases, don{"'"}t miss it
+								and join us!
+							</AboutUsText>
 
-						<TimelineTitleText className="mt-5 mb-3 ms-auto">
-							TIMELINE.
-						</TimelineTitleText>
-						<HorizontalTimeLine
-							data={timelineDbccSmall}
-							className="justify-content-center mt-5 mb-4"
-						/>
+							<TimelineTitleText className="mt-5 mb-3 ms-auto">
+								TIMELINE.
+							</TimelineTitleText>
 
-						<Link href="./register/dbcc">
-							<StyledButton
-								variant={"danger"}
-								textColor="black"
-								className="shadow mx-auto mt-5"
-							>
-								<RegisterNowButtonText>Register Now</RegisterNowButtonText>
-							</StyledButton>
-						</Link>
-					</Container>
-				</AboutUsContainer>
+							{timelineShown === "small" ? (
+								<HorizontalTimeLine
+									data={timelineDbccSmall}
+									className="justify-content-center mt-5 mb-4"
+								/>
+							) : (
+								<HorizontalTimeLine
+									data={timelineComplete}
+									className="justify-content-center mt-5 mb-4"
+								/>
+							)}
+
+							<div className="mt-5">
+								<div className="my-5 d-flex align-items-center w-100 justify-content-center">
+									<NavigationButton className="me-auto" onClick={handleClick} />
+									<NavigationButton direction="R" onClick={handleClick} />
+								</div>
+							</div>
+
+							<Link href="./register/dbcc">
+								<StyledButton
+									variant={"danger"}
+									textColor="black"
+									className="shadow mx-auto mt-5"
+								>
+									<RegisterNowButtonText>Register Now</RegisterNowButtonText>
+								</StyledButton>
+							</Link>
+						</Container>
+					</AboutUsContainer>
+				</Container>
 			</InnerContainer>
 		</OuterContainer>
 	);

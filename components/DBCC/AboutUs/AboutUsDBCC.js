@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { mediaBreakpoint } from "utils/mediaBreakpoints";
 import HorizontalTimeLine from "components/TimeLines/HorizontalTimeLine";
 import MyButton from "components/Buttons/MyButton";
 import Link from "next/link";
+import NavigationButton from "components/Buttons/Buttons";
 const OuterContainer = styled.div`
 	min-height: 100vh;
 	display: flex;
@@ -35,6 +36,10 @@ const InnerPillContainer = styled.div`
 	display: flex;
 	border-radius: 120px;
 	border: 28px solid #88ccf9;
+
+	@media ${mediaBreakpoint.down.md} {
+		padding: 40px 0;
+	}
 `;
 
 const Separator = styled.div`
@@ -87,6 +92,12 @@ const ImageContainer = styled.div`
 `;
 
 const AboutUsDBCC = () => {
+	const [timelineShown, setTimelineShown] = useState("small");
+
+	const handleClick = () => {
+		setTimelineShown(timelineShown === "small" ? "big" : "small");
+	};
+
 	const timelineDbccSmall = [
 		{
 			dateStart: "16 JUL",
@@ -121,6 +132,62 @@ const AboutUsDBCC = () => {
 			dateStart: null,
 			dateEnd: "13 NOV 2022",
 			text: "Enfution Summit",
+		},
+	];
+
+	const timelineFull = [
+		{
+			dateStart: "16",
+			dateEnd: "2 JUL 2022",
+			text: "Early Bird Registration",
+		},
+
+		{
+			dateStart: null,
+			dateEnd: "26 JUL 2022",
+			text: "Normal Registration",
+		},
+
+		{
+			dateStart: null,
+			dateEnd: "2 SEPT 2022",
+			text: "Close Registration",
+		},
+
+		{
+			dateStart: null,
+			dateEnd: "3 SEPT 2022",
+			text: "Case Distribution",
+		},
+		{
+			dateStart: null,
+			dateEnd: "17 SEPT 2022",
+			text: "Case Submission",
+		},
+
+		{
+			dateStart: null,
+			dateEnd: "3 OCT 2022",
+			text: "Enfution Summit",
+		},
+
+		{
+			dateStart: null,
+			dateEnd: "13 OCT 2022",
+			text: "Video Presentation + Sustain Solution Paper Submission",
+			small: true,
+		},
+
+		{
+			dateStart: null,
+			dateEnd: "28 OCT 2022",
+			text: "Top 10 Finalist Announcement",
+		},
+
+		{
+			dateStart: "9",
+			dateEnd: "10 NOV 2022",
+			text: "D-Day Final",
 		},
 	];
 	return (
@@ -165,14 +232,27 @@ const AboutUsDBCC = () => {
 						participants are the younger generation who will enter and lead in
 						the era of Society 5.0.
 					</AboutUsText>
-
 					<TimelineTitleText className="mt-5 mb-3 ms-auto">
 						TIMELINE<span className="text-danger">.</span>
 					</TimelineTitleText>
-					<HorizontalTimeLine
-						data={timelineDbccSmall}
-						className="justify-content-center mt-5 mb-4"
-					/>
+					{timelineShown === "small" ? (
+						<HorizontalTimeLine
+							data={timelineDbccSmall}
+							className="justify-content-center mt-5 mb-4"
+						/>
+					) : (
+						<HorizontalTimeLine
+							data={timelineFull}
+							className="justify-content-center mt-5 mb-4"
+						/>
+					)}
+
+					<div className="mt-5">
+						<div className="my-5 d-flex align-items-center w-100 justify-content-center">
+							<NavigationButton className="me-auto" onClick={handleClick} />
+							<NavigationButton direction="R" onClick={handleClick} />
+						</div>
+					</div>
 
 					<Link href="./register/dbcc">
 						<StyledButton
