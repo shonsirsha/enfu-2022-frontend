@@ -11,9 +11,11 @@ const OuterContainer = styled.div`
 const InnerContainer = styled.div`
 	max-width: 960px;
 	top: -74px;
+	min-height: 45vh;
 
 	@media ${mediaBreakpoint.down.md} {
 		top: 0;
+		min-height: 0;
 	}
 `;
 
