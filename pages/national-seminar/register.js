@@ -43,6 +43,10 @@ const LinkContainer = styled.div`
 	border-radius: 80px;
 	display: flex;
 	width: 270px;
+
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
 const StyledLink = styled.a`
@@ -97,7 +101,7 @@ const Register = () => {
 									Sharing <br /> Session
 								</>
 							}
-							href="/national-seminar/register/"
+							href="/national-seminar/register/sharing-session"
 						/>
 						<PillLink
 							text={

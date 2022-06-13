@@ -7,9 +7,9 @@ const FormText = styled.p`
 	font-family: Poppins;
 `;
 
-const FormInput = ({ text = "", ...props }) => {
+const FormInput = ({ text = "", className, ...props }) => {
 	return (
-		<div className="d-flex flex-column w-100 me-5">
+		<div className={`d-flex flex-column w-100 me-5 ${className}`}>
 			<FormText>{text}:</FormText>
 			<FormControl {...props} />
 		</div>
