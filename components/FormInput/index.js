@@ -7,11 +7,24 @@ const FormText = styled.p`
 	font-family: Poppins;
 `;
 
-const FormInput = ({ text = "", className, ...props }) => {
+const FormInput = ({
+	text = "",
+	className,
+	small = false,
+	noMargin = false,
+	...props
+}) => {
 	return (
-		<div className={`d-flex flex-column w-100 me-5 ${className}`}>
-			<FormText>{text}:</FormText>
-			<FormControl {...props} />
+		<div
+			className={`d-flex flex-column w-100 ${
+				noMargin ? `me-0` : `me-5`
+			} ${className}`}
+		>
+			<FormText>{text === "" ? `` : `${text}:`}</FormText>
+			<FormControl
+				className={`${small ? `smallInput` : `normalInput`}`}
+				{...props}
+			/>
 		</div>
 	);
 };

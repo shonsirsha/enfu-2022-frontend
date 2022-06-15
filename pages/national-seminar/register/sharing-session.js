@@ -21,6 +21,18 @@ const OuterContainer = styled.div`
 		padding: 10px 16px;
 		border-radius: 24px;
 		max-width: 480px;
+		text-align: center;
+	}
+
+	& input[type="file"] {
+		max-width: 480px;
+	}
+
+	& textarea:focus,
+	& input:focus,
+	& select:focus {
+		outline: none !important;
+		box-shadow: none;
 	}
 
 	& .small {
@@ -40,6 +52,8 @@ const OuterContainer = styled.div`
 		border-radius: 16px;
 		max-width: 480px;
 		background: #88ccf9;
+		text-align: center;
+		padding: 8px;
 	}
 
 	@media ${mediaBreakpoint.down.md} {

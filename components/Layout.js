@@ -6,8 +6,8 @@ import { useRouter } from "next/router";
 import FooterSection from "./LandingPage/FooterSection";
 
 const Layout = ({
-	title = "Enfution",
-	description = "Enfution",
+	title = "Enfution Undip 2022",
+	description = "Enfution UNDIP 2022",
 	keywords = "enfution,undip,dbcc,seminar nasional, national seminar, business case competition, semnas, universitas diponegoro",
 	children,
 }) => {
