@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import FormInput from "components/FormInput";
@@ -11,6 +11,7 @@ import SuccessSemnas from "components/Success/SuccessSemnas";
 import { validEmail, whitespace } from "utils/validations";
 import FileInputSemnas from "components/FormInput/FileInputSemnas";
 import Image from "next/image";
+import debounce from "utils/debounce";
 
 const OuterContainer = styled.div`
 	min-height: 100vh;
@@ -65,7 +66,7 @@ const OuterContainer = styled.div`
 `;
 
 const InnerContainer = styled.div`
-	border-radius: 30%;
+	border-radius: 240px;
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 	width: 100%;
@@ -161,7 +162,14 @@ const PaymentMethod = ({
 	</PaymentMethodContainer>
 );
 
-const PaymentSection = ({ buktiTrfSetterGetter, referralCode, onChange }) => {
+const PaymentSection = ({
+	price,
+	buktiTrfSetterGetter,
+	referralCode,
+	onChange,
+	onSearch,
+	referralCodeError = false,
+}) => {
 	const { buktiTrf, setBuktiTrf } = buktiTrfSetterGetter;
 
 	return (
@@ -175,7 +183,7 @@ const PaymentSection = ({ buktiTrfSetterGetter, referralCode, onChange }) => {
 					small
 					readOnly
 					className="align-items-center"
-					value={"Rp. 135.000"}
+					value={price}
 				/>
 			</div>
 
@@ -186,10 +194,21 @@ const PaymentSection = ({ buktiTrfSetterGetter, referralCode, onChange }) => {
 					small
 					name="referralCode"
 					className="align-items-center"
-					value={referralCode}
-					onChange={onChange}
+					// value={referralCode}
+					onChange={(e) => {
+						onChange(e);
+					}}
 					placeholder="If Any"
 				/>
+
+				{referralCodeError && (
+					<PaymentText
+						style={{ fontSize: 16 }}
+						className="text-danger  text-center mt-3"
+					>
+						Referral code is invalid! 😔
+					</PaymentText>
+				)}
 			</div>
 
 			<div className="d-flex align-items-center flex-lg-row flex-column w-100 form mt-5 align-items-center justify-content-center mb-5">
@@ -349,17 +368,17 @@ const SharingSessionRegister = () => {
 		phoneNr: "",
 		referralCode: "",
 	});
+	const DEFAULT_PRICE = "150.000";
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
+	const [price, setPrice] = useState(DEFAULT_PRICE);
 	const [ktm, setKTM] = useState(null);
 	const [buktiTrf, setBuktiTrf] = useState(null);
+	const [referralCodeError, setReferralCodeError] = useState(false);
 	const ktmSetterGetter = { ktm, setKTM };
 	const buktiTrfSetterGetter = { buktiTrf, setBuktiTrf };
 
 	const [step, setStep] = useState(0);
-	const onChange = (e) => {
-		setDetails({ ...details, [e.target.name]: e.target.value });
-	};
 
 	const {
 		fullName,
@@ -371,6 +390,42 @@ const SharingSessionRegister = () => {
 		phoneNr,
 		referralCode,
 	} = details;
+	const onChangeReferralCode = async (e) => {
+		console.log("searching for...", e.target.value);
+		setDetails({ ...details, [e.target.name]: e.target.value });
+
+		if (whitespace(e.target.value)) {
+			setPrice(DEFAULT_PRICE);
+		} else {
+			try {
+				const res = await axios({
+					method: "GET",
+					url: `http://localhost:5000/api/referral-code/${e.target.value}`,
+				});
+				setPrice(res.data.result[0].priceIDR);
+			} catch (e) {
+				setReferralCodeError(true);
+				console.log("error", e);
+			}
+		}
+	};
+
+	const debouncedSearch = debounce(onChangeReferralCode, 850);
+
+	const onChange = (e) => {
+		if (e.target.name === "referralCode") {
+			setReferralCodeError(false);
+
+			if (whitespace(e.target.value)) {
+				setPrice(DEFAULT_PRICE);
+			} else {
+				debouncedSearch(e);
+			}
+			// setDetails({ ...details, [e.target.name]: e.target.value });
+		} else {
+			setDetails({ ...details, [e.target.name]: e.target.value });
+		}
+	};
 
 	const handleSubmit = async () => {
 		if (step === 0) {
@@ -378,17 +433,21 @@ const SharingSessionRegister = () => {
 
 			document.body.scrollTop = document.documentElement.scrollTop = 0;
 		} else {
-			if (
-				!validEmail(email) ||
-				whitespace(fullName) ||
-				whitespace(univName) ||
-				whitespace(phoneNr) ||
-				whitespace(dob) ||
-				!buktiTrf
-			) {
-				alert("Please fill in all required fields! 😊");
+			if (referralCodeError) {
+				alert("Please use a valid referral code! 😊");
 			} else {
-				await register();
+				if (
+					!validEmail(email) ||
+					whitespace(fullName) ||
+					whitespace(univName) ||
+					whitespace(phoneNr) ||
+					whitespace(dob) ||
+					!buktiTrf
+				) {
+					alert("Please fill in all required fields! 😊");
+				} else {
+					await register();
+				}
 			}
 		}
 	};
@@ -447,9 +506,13 @@ const SharingSessionRegister = () => {
 							/>
 						) : (
 							<PaymentSection
+								price={price}
+								onSearch={debouncedSearch}
 								buktiTrfSetterGetter={buktiTrfSetterGetter}
 								setDetails={setDetails}
+								referralCode={referralCode}
 								onChange={onChange}
+								referralCodeError={referralCodeError}
 							/>
 						)}
 
