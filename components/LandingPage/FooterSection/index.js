@@ -182,7 +182,7 @@ const FooterSection = () => {
 					<div className="d-flex flex-column">
 						<SubscribeHeader className="ms-lg-auto mb-3 mx-auto mx-lg-0 text-end">
 							Subscribe to
-							<br /> The 13th Enfution
+							<br /> The 14th Enfution
 						</SubscribeHeader>
 
 						{success ? (

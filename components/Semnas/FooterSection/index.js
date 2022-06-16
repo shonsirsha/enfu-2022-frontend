@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { mediaBreakpoint } from "utils/mediaBreakpoints";
 import MyButton from "components/Buttons/MyButton";
-import axios from "axios";
 import CustomInput from "components/Inputs/CustomInput";
 import EnfuLogo from "public/assets/enfulogo.png";
 import Image from "next/image";
@@ -17,6 +16,7 @@ const StyledContainer = styled.div`
 
 const FooterContainer = styled.div`
 	border-bottom: 48px solid #ff5a24;
+	border-top: 48px solid #ff5a24;
 	padding: 32px 64px;
 	padding-top: 16px;
 
@@ -79,45 +79,33 @@ const DiscalimerText = styled.p`
 `;
 
 const ImageContainer = styled.div`
-	width: 90px;
-	height: 90px;
+	width: 280px;
+	height: 120px;
 	position: relative;
 	flex-shrink: 0;
-	@media ${mediaBreakpoint.down.md} {
-		font-size: 40px;
-		line-height: 40px;
-	}
 `;
 
-const FooterSectionDBCC = () => {
-	const [email, setEmail] = useState("");
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState("");
-	const [success, setSuccess] = useState(false);
-	const handleClick = async () => {
-		setLoading(true);
-		try {
-			await axios({
-				method: "post",
-				url: "http://localhost:5000/api/subscribe",
-				data: {
-					email,
-				},
-			});
+const ContactUsHeaderText = styled.p`
+	font-size: 32px;
+	font-height: 24px;
 
-			setEmail("");
-			setError("");
-			setSuccess(true);
-		} catch (e) {
-			console.log(e);
-			if (e.response.status === 409) {
-				setError("Email already registered!");
-			} else {
-				setError("Sorry, an unexpected error happens, please try again!");
-			}
-		}
-		setLoading(false);
-	};
+	font-family: TT_Ramilas;
+	font-weight: 600;
+	margin: 0;
+`;
+
+const EmailText = styled.p`
+	font-size: 16px;
+	margin: 0;
+	font-height: 16px;
+	font-weight: 300;
+`;
+
+const KeepUpdateText = styled.p`
+	font-size: 18px;
+`;
+
+const FooterSectionSemnas = () => {
 	return (
 		<StyledContainer
 			id="contactus"
@@ -125,7 +113,30 @@ const FooterSectionDBCC = () => {
 		>
 			<FooterContainer className="bg-cream w-100">
 				<div className="w-100 d-flex justify-content-between align-items-center flex-lg-row flex-column">
+					<div className="d-flex flex-column align-items-center mb-lg-0 mb-3 mt-lg-0 mt-3">
+						<div className="d-flex  flex-column">
+							<ImageContainer>
+								<Image
+									src={"/assets/semnaslogo2.png"}
+									layout="fill"
+									alt="Logo"
+								/>
+							</ImageContainer>
+
+							<ContactUsHeaderText className="mt-4 text-lg-left text-center">
+								Contact Us
+							</ContactUsHeaderText>
+
+							<EmailText className="text-lg-left text-center">
+								enfutionundip.semnas@gmail.com
+							</EmailText>
+						</div>
+					</div>
+
 					<div className="d-flex flex-column mb-lg-0 mb-3">
+						<KeepUpdateText className="mb-3 text-center">
+							<i>keep yourself updated through our social media channels</i>
+						</KeepUpdateText>
 						<div className="d-flex">
 							<Image src={LineLogo} width={20} height={20} alt="Logo" />
 							<TextLink
@@ -174,74 +185,10 @@ const FooterSectionDBCC = () => {
 							</TextLink>
 						</div>
 					</div>
-					<div className="d-flex flex-column align-items-center mb-lg-0 mb-3 mt-lg-0 mt-3">
-						<div className="d-flex align-items-center flex-lg-row flex-column">
-							<ImageContainer>
-								<Image
-									src={"/assets/dbcclogolarge.png"}
-									layout="fill"
-									alt="Logo"
-								/>
-							</ImageContainer>
-
-							<Separator className="mx-4 d-none d-lg-block" />
-							<Header className="mt-lg-0 mt-4 text-lg-start text-center">
-								DIPONEGORO BUSINESS <br /> CASE COMPETITION{" "}
-								<span className="text-orange">2022</span>
-							</Header>
-						</div>
-						<DetailText className="text-danger mt-3 text-lg-start text-center">
-							{`"Eternal Economic Prosperity by Maximising Smart Technology"`}
-						</DetailText>
-					</div>
-
-					<div className="d-flex flex-column">
-						<SubscribeHeader className="ms-lg-auto mb-3 mx-auto mx-lg-0 text-lg-end text-center">
-							Subscribe to
-							<br /> The 14th Enfution
-						</SubscribeHeader>
-
-						{success ? (
-							<Subheader className="text-lg-end text-center mb-2">
-								Your subscription to our newsletter was successful!
-							</Subheader>
-						) : (
-							<div className="d-flex">
-								<CustomInput
-									style={{ width: 200 }}
-									value={email}
-									onChange={(e) => {
-										e.preventDefault();
-										setEmail(e.target.value);
-									}}
-									className="me-2 mb-lg-0 mb-2 text-center"
-									pill
-									onSubmit={handleClick}
-									errorText={error}
-									subscriberInput
-								/>
-								<MyButton
-									onClick={handleClick}
-									disabled={loading}
-									variant="danger"
-									className="mb-auto"
-									pill
-									textColor="lightYellow"
-								>
-									Subscribe
-								</MyButton>
-							</div>
-						)}
-
-						<DiscalimerText className="ms-lg-auto ms-0 text-lg-end">
-							By clicking subscribe, you agree to receive email newsletter and
-							calendar notifications.
-						</DiscalimerText>
-					</div>
 				</div>
 			</FooterContainer>
 		</StyledContainer>
 	);
 };
 
-export default FooterSectionDBCC;
+export default FooterSectionSemnas;
