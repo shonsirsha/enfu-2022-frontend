@@ -540,7 +540,7 @@ const SharingSessionRegister = () => {
 										textColor="cream"
 									>
 										<b>
-											<i>NEXT</i>
+											<i>{step === 0 ? `NEXT` : `SUBMIT`}</i>
 										</b>
 									</SubmitButton>
 								</div>
