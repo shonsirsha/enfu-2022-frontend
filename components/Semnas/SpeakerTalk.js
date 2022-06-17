@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
-import { SemiCircle } from "components/SemiCircle";
 import { mediaBreakpoint } from "utils/mediaBreakpoints";
 
 const OuterContainer = styled.div`
@@ -21,97 +20,6 @@ const Container = styled.div`
 
 	@media ${mediaBreakpoint.down.md} {
 		padding: 32px;
-	}
-`;
-
-const Header = styled.h1`
-	font-family: TT_Ramilas;
-	font-weight: 600;
-	font-size: 64px;
-	line-height: 64px;
-	letter-spacing: 1.6px;
-
-	& .ap {
-		font-family: Poppins;
-	}
-
-	@media ${mediaBreakpoint.down.md} {
-		font-size: 40px;
-		line-height: 40px;
-	}
-`;
-
-const TextAbout = styled.p`
-	font-size: 24px;
-	font-weight: 300;
-	line-height: 32px;
-	letter-spacing: 0.5px;
-
-	@media ${mediaBreakpoint.down.md} {
-		font-size: 18px;
-		line-height: 26px;
-	}
-`;
-
-const PillContainer = styled.div`
-	padding: 8px 16px;
-	border-radius: 16px;
-
-	p {
-		font-size: 18px;
-	}
-`;
-
-const SemiCLeftContainer = styled.div`
-	position: absolute;
-	left: -45px;
-	top: 50%;
-	transform: translateY(-50%);
-
-	@media ${mediaBreakpoint.down.md} {
-		left: -32px;
-	}
-`;
-
-const SemiCRightContainer = styled.div`
-	position: absolute;
-	right: -45px;
-	top: 50%;
-	transform: translateY(-50%);
-
-	@media ${mediaBreakpoint.down.md} {
-		right: -32px;
-	}
-`;
-
-const SemiCLeft = styled(SemiCircle)`
-	width: 180px;
-	height: 90px;
-	transform: rotate(90deg);
-
-	@media ${mediaBreakpoint.down.lg} {
-		width: 120px;
-		height: 60px;
-	}
-
-	@media ${mediaBreakpoint.down.md} {
-		width: 90px;
-		height: 45px;
-	}
-`;
-const SemiCRight = styled(SemiCircle)`
-	width: 180px;
-	height: 90px;
-	transform: rotate(270deg);
-
-	@media ${mediaBreakpoint.down.lg} {
-		width: 120px;
-		height: 60px;
-	}
-
-	@media ${mediaBreakpoint.down.md} {
-		width: 90px;
-		height: 45px;
 	}
 `;
 
@@ -143,10 +51,10 @@ const Separator = styled.div`
 	border-radius: 16px;
 `;
 
-const SpeakerTalk = ({ imageOnRight = true, children }) => {
+const SpeakerTalk = ({ imageOnRight = true, id, children }) => {
 	return (
 		<OuterContainer
-			id="about-us"
+			id={id}
 			className="bg-secondary d-flex justify-content-center"
 		>
 			<Separator className="shadow bg-cream me-lg-5 me-3" />

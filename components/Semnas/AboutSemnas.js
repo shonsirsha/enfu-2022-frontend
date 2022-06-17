@@ -67,8 +67,8 @@ const SemiCLeftContainer = styled.div`
 	top: 50%;
 	transform: translateY(-50%);
 
-	@media ${mediaBreakpoint.down.md} {
-		left: -32px;
+	@media ${mediaBreakpoint.down.lg} {
+		left: -30px;
 	}
 `;
 
@@ -78,8 +78,8 @@ const SemiCRightContainer = styled.div`
 	top: 50%;
 	transform: translateY(-50%);
 
-	@media ${mediaBreakpoint.down.md} {
-		right: -32px;
+	@media ${mediaBreakpoint.down.lg} {
+		right: -30px;
 	}
 `;
 
@@ -89,11 +89,6 @@ const SemiCLeft = styled(SemiCircle)`
 	transform: rotate(90deg);
 
 	@media ${mediaBreakpoint.down.lg} {
-		width: 120px;
-		height: 60px;
-	}
-
-	@media ${mediaBreakpoint.down.md} {
 		width: 90px;
 		height: 45px;
 	}
@@ -104,11 +99,6 @@ const SemiCRight = styled(SemiCircle)`
 	transform: rotate(270deg);
 
 	@media ${mediaBreakpoint.down.lg} {
-		width: 120px;
-		height: 60px;
-	}
-
-	@media ${mediaBreakpoint.down.md} {
 		width: 90px;
 		height: 45px;
 	}
