@@ -85,7 +85,7 @@ const VerticalTLContainer = styled.div`
 
 const index = () => {
 	return (
-		<StyledContainer className="bg-secondary position-relative">
+		<StyledContainer id="timeline" className="bg-secondary position-relative">
 			<InnerContainer className="bg-cream position-relative">
 				<TimeLineBadge className="bg-danger">
 					<Header className="text-cream">Timeline</Header>

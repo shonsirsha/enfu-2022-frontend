@@ -10,6 +10,7 @@ import WhyShouldYouJoin from "components/Semnas/WhyShouldYouJoin";
 import TimelineSemnas from "components/Semnas/TimelineSemnas";
 import TimelineSharingSession from "components/Semnas/TimelineSharingSession";
 import TimelineSharingSessionTwo from "components/Semnas/TimelineSharingSessionTwo";
+import Testimonials from "components/Semnas/Testimonial";
 
 const Home = () => {
 	return (
@@ -25,6 +26,7 @@ const Home = () => {
 			<WhyShouldYouJoin />
 			<TimelineSharingSessionTwo />
 			<PreviousSpeakers />
+			<Testimonials />
 		</div>
 	);
 };

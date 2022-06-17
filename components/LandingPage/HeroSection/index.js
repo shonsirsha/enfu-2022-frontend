@@ -27,7 +27,10 @@ const SubHeader = styled.p`
 
 const HeroSection = () => {
 	return (
-		<StyledContainer className="bg-secondary d-flex align-items-center justify-content-center">
+		<StyledContainer
+			id="home"
+			className="bg-secondary d-flex align-items-center justify-content-center"
+		>
 			<div className="d-flex flex-lg-row flex-column justify-content-center align-items-center">
 				<Image src={EnfuLogo} alt="Logo Enfu" width={196} height={196} />
 				<div className="ms-lg-2 ms-0 d-flex flex-column align-items-center text-center">

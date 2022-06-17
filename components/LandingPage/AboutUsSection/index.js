@@ -81,7 +81,7 @@ const AndText = styled.p`
 
 const AboutUsSection = () => {
 	return (
-		<div className="bg-secondary" style={{ paddingTop: 164 }}>
+		<div className="bg-secondary" style={{ paddingTop: 164 }} id="about-us">
 			<StyledContainer className="bg-orange">
 				<TextContainer className="bg-cream position-relative">
 					<Ribbon text="About Us" />

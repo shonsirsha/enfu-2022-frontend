@@ -28,12 +28,7 @@ const StyledNavLink = styled.a`
 	}
 `;
 
-const Dot = styled.div`
-	width: 8px;
-	height: 8px;
-	border-radius: 100%;
-`;
-const SemnasNavbar = () => {
+const EnfuNavbar = () => {
 	const router = useRouter();
 	return (
 		<Navbar
@@ -43,13 +38,13 @@ const SemnasNavbar = () => {
 			fixed="top"
 		>
 			<Container>
-				<Link href="/national-seminar" passHref>
+				<Link href="/" passHref>
 					<Navbar.Brand>
 						<Image
-							src={"/assets/semnaslogo.png"}
-							width={143}
-							height={76}
-							alt="Logo"
+							src={"/assets/enfulogo.png"}
+							alt="Logo Enfu"
+							width={86}
+							height={86}
 						/>
 					</Navbar.Brand>
 				</Link>
@@ -58,24 +53,39 @@ const SemnasNavbar = () => {
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="mx-auto align-items-center">
 						<div className="d-flex flex-column mx-4 align-items-center">
-							<Link passHref href="/national-seminar">
+							<Link passHref href="/">
 								<StyledNavLink className="">HOME</StyledNavLink>
 							</Link>
 						</div>
 						<div className="d-flex flex-column mx-4 align-items-center">
-							<Link passHref href="/national-seminar#about-us">
-								<StyledNavLink className="">ABOUT US</StyledNavLink>
+							<Link passHref href="#about-us">
+								<StyledNavLink
+									onClick={() => {
+										setTimeout(() => {
+											const blue = document.getElementById("about-us");
+											let position = blue.getBoundingClientRect();
+											// scrolls to 20px above element
+											window.scrollTo(
+												position.left,
+												position.top + window.scrollY - 120
+											);
+										}, 150);
+									}}
+									className=""
+								>
+									ABOUT US
+								</StyledNavLink>
 							</Link>
 						</div>
 
 						<div className="d-flex flex-column mx-4 align-items-center">
-							<Link passHref href="/national-seminar#testimonials">
-								<StyledNavLink className="">TESTIMONIALS</StyledNavLink>
+							<Link passHref href="#timeline">
+								<StyledNavLink>TIMELINE</StyledNavLink>
 							</Link>
 						</div>
 
 						<div className="d-flex flex-column mx-4 align-items-center mb-md-0 mb-3">
-							<Link passHref href="/national-seminar/register">
+							<Link passHref href="#events">
 								<a>
 									<MyButton variant="danger" textColor="cream">
 										<b>
@@ -84,13 +94,6 @@ const SemnasNavbar = () => {
 									</MyButton>
 								</a>
 							</Link>
-							{(router.pathname === "/national-seminar/register" ||
-								router.pathname ===
-									"/national-seminar/register/sharing-session" ||
-								router.pathname ===
-									"/national-seminar/register/national-seminar") && (
-								<Dot className="bg-danger mt-2" />
-							)}
 						</div>
 					</Nav>
 				</Navbar.Collapse>
@@ -99,4 +102,4 @@ const SemnasNavbar = () => {
 	);
 };
 
-export default SemnasNavbar;
+export default EnfuNavbar;

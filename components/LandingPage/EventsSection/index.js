@@ -61,7 +61,6 @@ const CardText = styled.p`
 `;
 
 const StyledSemiCircle = styled(SemiCircle)`
-	background: #ff5a24;
 	position: absolute;
 	transform: rotate(90deg);
 	left: -25px;
@@ -110,28 +109,47 @@ const Card = ({ text = "", style, href = "", circleLeft, ...props }) => {
 
 const EventsSection = () => {
 	return (
-		<div className="bg-secondary">
+		<div id="events" className="bg-secondary">
 			<StyledContainer className="bg-orange">
 				<InnerContainer className="position-relative bg-cream d-flex flex-column align-items-center ">
 					<div className="d-md-block d-none">
-						<StyledSemiCircleSmallLeft />
-						<StyledSemiCircleSmallRight />
+						<StyledSemiCircleSmallLeft className="bg-orange" />
+						<StyledSemiCircleSmallRight className="bg-orange" />
 					</div>
 
 					<Header>Events</Header>
 
 					<div className="d-flex flex-lg-row flex-column my-5">
 						<div className="me-lg-5 me-0 mb-lg-0 mb-5">
-							<Card text="SHARING SESSION" href="/national-seminar" />
+							<Card
+								text="SHARING SESSION"
+								href="/national-seminar/register/sharing-session"
+							/>
 						</div>
-						<Card text="NATIONAL SEMINAR" href="/national-seminar" />
+						<Card
+							text="NATIONAL SEMINAR"
+							href="/national-seminar/register/national-seminar"
+						/>
 					</div>
 
 					<div className="d-flex flex-lg-row flex-column">
 						<div className="me-lg-5 me-0 mb-lg-0 mb-5">
-							<Card text="COACHING SESSION" href="/dbcc" />
+							<Card
+								text="COACHING SESSION"
+								href="/dbcc/register/coaching-session"
+							/>
 						</div>
-						<Card text="DIPONEGORO BUSINESS CASE COMPETITION" href="/dbcc" />
+						<Card
+							text="COACHING CLINIC"
+							href="/dbcc/register/coaching-clinic"
+						/>
+					</div>
+
+					<div className="mt-5">
+						<Card
+							text="DIPONEGORO BUSINESS CASE COMPETITION"
+							href="/dbcc/register/dbcc"
+						/>
 					</div>
 				</InnerContainer>
 			</StyledContainer>

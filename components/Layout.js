@@ -4,6 +4,7 @@ import MyNavbar from "./Navbar";
 import FooterSectionDBCC from "./DBCC/FooterSection/index";
 import FooterSectionSemnas from "./Semnas/FooterSection";
 import { useRouter } from "next/router";
+import EnfuNavbar from "./Navbar/EnfuNavbar";
 import FooterSection from "./LandingPage/FooterSection";
 import SemnasNavbar from "./Navbar/SemnasNavbar";
 
@@ -24,6 +25,7 @@ const Layout = ({
 				<link rel="shortcut icon" href="/images/favicon.ico" />
 			</Head>
 
+			{router.pathname === "/" && <EnfuNavbar />}
 			{router.pathname.includes("dbcc") && <MyNavbar />}
 			{router.pathname.includes("national-seminar") && <SemnasNavbar />}
 
