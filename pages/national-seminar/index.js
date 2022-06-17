@@ -7,6 +7,9 @@ import AboutSemnas from "components/Semnas/AboutSemnas";
 import PreviousSpeakers from "components/Semnas/PreviousSpeakers";
 import ThisYearsSpeaker from "components/Semnas/ThisYearsSpeaker";
 import WhyShouldYouJoin from "components/Semnas/WhyShouldYouJoin";
+import TimelineSemnas from "components/Semnas/TimelineSemnas";
+import TimelineSharingSession from "components/Semnas/TimelineSharingSession";
+import TimelineSharingSessionTwo from "components/Semnas/TimelineSharingSessionTwo";
 
 const Home = () => {
 	return (
@@ -14,10 +17,13 @@ const Home = () => {
 			<Hero />
 			<GeneralAbout />
 			<SpeakerTalk id={"speakertalk"} />
+			<TimelineSharingSession />
 			<SpeakerTalk imageOnRight={false} id={"speakertalk2"}></SpeakerTalk>
+			<TimelineSemnas />
 			<AboutSemnas />
 			<ThisYearsSpeaker />
 			<WhyShouldYouJoin />
+			<TimelineSharingSessionTwo />
 			<PreviousSpeakers />
 		</div>
 	);
