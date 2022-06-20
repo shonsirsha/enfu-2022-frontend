@@ -84,7 +84,10 @@ const SuccessDBCC = () => {
 					<Text className="text-center">
 						Your registration have completed. For further <br /> notice, will be
 						announced through your e-mail{" "}
-						<i>(please also check your spam folder).</i>.
+						<i>
+							<b>(please also check your spam folder).</b>
+						</i>
+						.
 					</Text>
 
 					<Circle className="bg-orange position-absolute" />

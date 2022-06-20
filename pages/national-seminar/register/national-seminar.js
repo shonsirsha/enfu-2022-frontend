@@ -400,7 +400,7 @@ const SharingSessionRegister = () => {
 			try {
 				const res = await axios({
 					method: "GET",
-					url: `http://localhost:5000/api/referral-code/${e.target.value}`,
+					url: `${process.env.NEXT_PUBLIC_REST_API_URL}/referral-code/${e.target.value}`,
 				});
 				setPrice(res.data.result[0].priceIDR);
 			} catch (e) {
@@ -472,7 +472,7 @@ const SharingSessionRegister = () => {
 
 			await axios({
 				method: "post",
-				url: "http://localhost:5000/api/seminar-nasional",
+				url: `${process.env.NEXT_PUBLIC_REST_API_URL}/seminar-nasional`,
 				headers: { "Content-Type": "multipart/form-data" },
 				data: bodyFormData,
 			});

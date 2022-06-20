@@ -687,7 +687,7 @@ const CoachingSession = () => {
 		try {
 			await axios({
 				method: "post",
-				url: "http://localhost:5000/api/dbcc",
+				url: `${process.env.NEXT_PUBLIC_REST_API_URL}/dbcc`,
 				data: {
 					teamId,
 					teamName,

@@ -78,10 +78,12 @@ const SuccessSemnas = () => {
 						<i>
 							*If there is no error in filliing the form, within 2x24 hours you
 							will get a verification email (
-							<u>please also check your spam folder</u>), contain link and
-							password for join the seminar *If within 2x24 hours you do not
-							receive the verification email from the committee, please contact
-							us
+							<b>
+								<u>please also check your spam folder</u>
+							</b>
+							), contain link and password for join the seminar *If within 2x24
+							hours you do not receive the verification email from the
+							committee, please contact us
 						</i>
 					</Text>
 				</Container>

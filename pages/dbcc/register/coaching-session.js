@@ -211,9 +211,9 @@ const CoachingSession = () => {
 	const registerDBCCParticipant = async () => {
 		setLoading(true);
 		try {
-			const register = await axios({
+			await axios({
 				method: "post",
-				url: "http://localhost:5000/api/coaching-session",
+				url: `${process.env.NEXT_PUBLIC_REST_API_URL}/coaching-session`,
 				data: {
 					fullName,
 					placeDOB,
@@ -261,7 +261,7 @@ const CoachingSession = () => {
 
 			await axios({
 				method: "post",
-				url: "http://localhost:5000/api/coaching-session",
+				url: `${process.env.NEXT_PUBLIC_REST_API_URL}/coaching-session`,
 				headers: { "Content-Type": "multipart/form-data" },
 				data: bodyFormData,
 			});

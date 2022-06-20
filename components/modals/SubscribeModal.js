@@ -110,7 +110,7 @@ const SubscribeModal = ({ showSubscribeModal, setShowSubscribeModal }) => {
 		try {
 			const subscribe = await axios({
 				method: "post",
-				url: "http://localhost:5000/api/subscribe",
+				url: `${process.env.NEXT_PUBLIC_REST_API_URL}/subscribe`,
 				data: {
 					email,
 				},

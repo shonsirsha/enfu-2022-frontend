@@ -154,7 +154,7 @@ const SharingSessionRegister = () => {
 		try {
 			await axios({
 				method: "post",
-				url: "http://localhost:5000/api/sharing-session",
+				url: `${process.env.NEXT_PUBLIC_REST_API_URL}/sharing-session`,
 				data: {
 					fullName,
 					facultyDepartmentBatch,

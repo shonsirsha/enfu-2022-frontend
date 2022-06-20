@@ -99,7 +99,7 @@ const FooterSectionDBCC = () => {
 		try {
 			await axios({
 				method: "post",
-				url: "http://localhost:5000/api/subscribe",
+				url: `${process.env.NEXT_PUBLIC_REST_API_URL}/subscribe`,
 				data: {
 					email,
 				},

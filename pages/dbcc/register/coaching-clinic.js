@@ -223,7 +223,7 @@ const CoachingClinic = () => {
 
 			await axios({
 				method: "post",
-				url: "http://localhost:5000/api/coaching-clinic",
+				url: `${process.env.NEXT_PUBLIC_REST_API_URL}/coaching-clinic`,
 				headers: { "Content-Type": "multipart/form-data" },
 				data: bodyFormData,
 			});
@@ -260,7 +260,7 @@ const CoachingClinic = () => {
 
 			await axios({
 				method: "post",
-				url: "http://localhost:5000/api/coaching-clinic",
+				url: `${NEXT_PUBLIC_REST_API_URL}/coaching-clinic`,
 				headers: { "Content-Type": "multipart/form-data" },
 				data: bodyFormData,
 			});
