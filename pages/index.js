@@ -8,7 +8,7 @@ import HeroSection from "components/LandingPage/HeroSection";
 import SponsorSection from "components/LandingPage/SponsorSection";
 import ForewordSection from "components/LandingPage/ForewordSection";
 
-export default function Home() {
+export default function Home({ config }) {
 	const [isSSR, setIsSSR] = useState(true);
 	const [showSubscribeModal, setShowSubscribeModal] = useState(true);
 
@@ -28,7 +28,7 @@ export default function Home() {
 						showSubscribeModal={showSubscribeModal}
 						setShowSubscribeModal={setShowSubscribeModal}
 					/>
-					<EventsSection />
+					{config && <EventsSection config={config} />}
 					<TimelineSection />
 					<ForewordSection />
 					<SponsorSection />
@@ -36,4 +36,17 @@ export default function Home() {
 			)}
 		</>
 	);
+}
+
+export async function getStaticProps() {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/config`);
+	const config = (await res.json()).result[0];
+
+	return {
+		props: {
+			config: config ? config : null,
+		},
+
+		revalidate: 1,
+	};
 }

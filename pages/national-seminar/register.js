@@ -45,7 +45,7 @@ const LinkContainer = styled.div`
 	width: 270px;
 
 	&:hover {
-		cursor: pointer;
+		cursor: ${(props) => (props.open ? `pointer` : `not-allowed`)};
 	}
 `;
 
@@ -72,15 +72,31 @@ const ImageContainer = styled.div`
 	}
 `;
 
-const PillLink = ({ text, href = "/", className }) => (
-	<Link href={href}>
-		<LinkContainer className={`bg-danger justify-content-center ${className}`}>
-			<StyledLink className="text-cream text-center">{text}</StyledLink>
-		</LinkContainer>
-	</Link>
+const PillLink = ({ text, open, href = "/", className }) => (
+	<>
+		{open ? (
+			<Link href={href}>
+				<LinkContainer
+					className={`bg-danger justify-content-center ${className}`}
+				>
+					<StyledLink className="text-cream text-center">{text}</StyledLink>
+				</LinkContainer>
+			</Link>
+		) : (
+			<LinkContainer
+				open={open}
+				className={`bg-gray justify-content-center ${className}`}
+			>
+				<StyledLink className="text-cream text-center">
+					{text} (<i>Closed</i>)
+				</StyledLink>
+			</LinkContainer>
+		)}
+	</>
 );
 
-const Register = () => {
+const Register = ({ config }) => {
+	const { regist_semnas_open, regist_sharing_session_open } = config;
 	return (
 		<OuterContainer className="bg-secondary">
 			<InnerContainer className="bg-cream d-flex justify-content-center shadow">
@@ -95,6 +111,7 @@ const Register = () => {
 
 					<div className="d-flex justify-content-center align-items-center flex-lg-row flex-column w-100 mt-4">
 						<PillLink
+							open={regist_sharing_session_open}
 							className="me-lg-4 me-0 my-lg-0 my-4"
 							text={
 								<>
@@ -104,6 +121,7 @@ const Register = () => {
 							href="/national-seminar/register/sharing-session"
 						/>
 						<PillLink
+							open={regist_semnas_open}
 							text={
 								<>
 									National <br /> Seminar
@@ -117,5 +135,18 @@ const Register = () => {
 		</OuterContainer>
 	);
 };
+
+export async function getStaticProps() {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/config`);
+	const config = (await res.json()).result[0];
+
+	return {
+		props: {
+			config: config ? config : null,
+		},
+
+		revalidate: 1,
+	};
+}
 
 export default Register;

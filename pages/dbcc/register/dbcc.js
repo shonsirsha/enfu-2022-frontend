@@ -550,9 +550,7 @@ const ThirdMember = ({
 	);
 };
 
-const CoachingSession = () => {
-	const [isDBCCParticipant, setIsDBCCParticipant] = useState(-1);
-	const [buktiTrfFile, setBuktiTrfFile] = useState(null);
+const DBCC = () => {
 	const [success, setSuccess] = useState(false);
 	const [loading, setLoading] = useState(false);
 
@@ -669,7 +667,7 @@ const CoachingSession = () => {
 
 			const res = await axios({
 				method: "post",
-				url: "http://localhost:5000/api/dbcc/images",
+				url: `${NEXT_PUBLIC_REST_API_URL}/dbcc/images`,
 				headers: { "Content-Type": "multipart/form-data" },
 				data: bodyFormData,
 			});
@@ -805,15 +803,36 @@ const CoachingSession = () => {
 						</Container>
 					</OuterContainer>
 
-					<PaymentSection
-						onSubmit={handleSubmit}
-						setBuktiTrf={setBuktiTrf}
-						buktiTrf={buktiTrf}
-					/>
+					{loading ? (
+						"Loading..."
+					) : (
+						<PaymentSection
+							onSubmit={handleSubmit}
+							setBuktiTrf={setBuktiTrf}
+							buktiTrf={buktiTrf}
+						/>
+					)}
 				</BlueContainer>
 			)}
 		</>
 	);
 };
 
-export default CoachingSession;
+export async function getStaticProps() {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/config`);
+	const regist_dbcc_open = (await res.json()).result[0].regist_dbcc_open;
+
+	if (!regist_dbcc_open) {
+		return {
+			redirect: {
+				destination: "/dbcc/register",
+			},
+		};
+	}
+	return {
+		props: {},
+		revalidate: 1,
+	};
+}
+
+export default DBCC;

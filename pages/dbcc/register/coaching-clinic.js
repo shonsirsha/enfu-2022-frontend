@@ -355,4 +355,22 @@ const CoachingClinic = () => {
 	);
 };
 
+export async function getStaticProps() {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/config`);
+	const regist_coaching_clinic_open = (await res.json()).result[0]
+		.regist_coaching_clinic_open;
+
+	if (!regist_coaching_clinic_open) {
+		return {
+			redirect: {
+				destination: "/dbcc/register",
+			},
+		};
+	}
+	return {
+		props: {},
+		revalidate: 1,
+	};
+}
+
 export default CoachingClinic;

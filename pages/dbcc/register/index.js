@@ -36,7 +36,7 @@ const Header = styled.h1`
 const Card = styled.div`
 	padding: 40px 24px;
 	border-radius: 24px;
-	background: #feb01c;
+	background: ${(props) => (props.open ? `#feb01c` : `gray`)};
 	width: 340px;
 	display: flex;
 	align-items: center;
@@ -110,7 +110,13 @@ const Separator = styled.div`
 	background: #000;
 `;
 
-const DBCC = () => {
+const DBCC = ({ config }) => {
+	const {
+		regist_dbcc_open,
+		regist_coaching_session_open,
+		regist_coaching_clinic_open,
+	} = config;
+
 	return (
 		<div
 			className="bg-cream d-flex justify-content-center align-items-start"
@@ -136,15 +142,26 @@ const DBCC = () => {
 				</RegisterForContainer>
 				<div className="d-flex w-100 justify-content-center mt-3 flex-lg-row flex-column align-items-lg-stretch align-items-center">
 					<div className="position-relative mx-lg-5 mx-0 ">
-						<Link href="./register/dbcc">
-							<a>
-								<Card>
-									<EventNameText className="text-white text-center">
-										Diponegoro Business Case Competition
-									</EventNameText>
-								</Card>{" "}
-							</a>
-						</Link>
+						{regist_dbcc_open ? (
+							<Link href="./register/dbcc">
+								<a>
+									<Card open={1}>
+										<EventNameText className="text-white text-center">
+											Diponegoro Business Case Competition
+										</EventNameText>
+									</Card>{" "}
+								</a>
+							</Link>
+						) : (
+							<Card open={0}>
+								<EventNameText className="text-white text-center">
+									Diponegoro Business Case Competition{" "}
+									<u>
+										<i>Closed</i>
+									</u>
+								</EventNameText>
+							</Card>
+						)}
 
 						<ContainerSCL className="d-none d-lg-block">
 							<SemiCircleLeft />
@@ -154,15 +171,26 @@ const DBCC = () => {
 						</ContainerSCR>
 					</div>
 					<div className="position-relative mx-lg-5 mx-0 my-lg-0 my-4">
-						<Link href="./register/coaching-session">
-							<a>
-								<Card>
-									<EventNameText className="text-white text-center">
-										Coaching <br /> Session
-									</EventNameText>
-								</Card>
-							</a>
-						</Link>
+						{regist_coaching_session_open ? (
+							<Link href="./register/coaching-session">
+								<a>
+									<Card open={1}>
+										<EventNameText className="text-white text-center">
+											Coaching <br /> Session
+										</EventNameText>
+									</Card>
+								</a>
+							</Link>
+						) : (
+							<Card open={0}>
+								<EventNameText className="text-white text-center">
+									Coaching <br /> Session{" "}
+									<u>
+										<i>Closed</i>
+									</u>
+								</EventNameText>
+							</Card>
+						)}
 
 						<ContainerSCL className="d-none d-lg-block">
 							<SemiCircleLeft />
@@ -173,15 +201,23 @@ const DBCC = () => {
 					</div>
 
 					<div className="position-relative mx-lg-5 mx-0">
-						<Link href="./register/coaching-clinic">
-							<a>
-								<Card>
-									<EventNameText className="text-white text-center">
-										Coaching <br /> Clinic
-									</EventNameText>
-								</Card>
-							</a>
-						</Link>
+						{regist_coaching_clinic_open ? (
+							<Link href="./register/coaching-clinic">
+								<a>
+									<Card open={1}>
+										<EventNameText className="text-white text-center">
+											Coaching <br /> Clinic
+										</EventNameText>
+									</Card>
+								</a>
+							</Link>
+						) : (
+							<Card open={0}>
+								<EventNameText className="text-white text-center">
+									Coaching <br /> Clinic
+								</EventNameText>
+							</Card>
+						)}
 
 						<ContainerSCL className="d-none d-lg-block">
 							<SemiCircleLeft />
@@ -195,5 +231,18 @@ const DBCC = () => {
 		</div>
 	);
 };
+
+export async function getStaticProps() {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/config`);
+	const config = (await res.json()).result[0];
+
+	return {
+		props: {
+			config: config ? config : null,
+		},
+
+		revalidate: 1,
+	};
+}
 
 export default DBCC;

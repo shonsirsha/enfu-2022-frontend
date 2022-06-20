@@ -4,6 +4,11 @@ import Button from "react-bootstrap/Button";
 
 const StyledButton = styled(Button)`
 	border-radius: ${(props) => (props.pill ? `24px` : `inherit`)};
+	pointer-events: all !important;
+	&:hover {
+		cursor: ${(props) =>
+			props.disabled ? `not-allowed` : `pointer`} !important;
+	}
 `;
 const ButtonText = styled.p`
 	font-family: Poppins;

@@ -299,4 +299,22 @@ const SharingSessionRegister = () => {
 	);
 };
 
+export async function getStaticProps() {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/config`);
+	const regist_sharing_session_open = (await res.json()).result[0]
+		.regist_sharing_session_open;
+
+	if (!regist_sharing_session_open) {
+		return {
+			redirect: {
+				destination: "/national-seminar/register",
+			},
+		};
+	}
+	return {
+		props: {},
+		revalidate: 1,
+	};
+}
+
 export default SharingSessionRegister;

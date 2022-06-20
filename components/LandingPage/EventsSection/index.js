@@ -81,7 +81,14 @@ const StyledSemiCircleSmallRight = styled(StyledSemiCircleSmallLeft)`
 	transform: rotate(270deg);
 	left: calc(100% - 48px);
 `;
-const Card = ({ text = "", style, href = "", circleLeft, ...props }) => {
+const Card = ({
+	text = "",
+	style,
+	href = "",
+	circleLeft,
+	open = true,
+	...props
+}) => {
 	const { className } = props;
 	return (
 		<div className="d-flex flex-column">
@@ -95,19 +102,41 @@ const Card = ({ text = "", style, href = "", circleLeft, ...props }) => {
 			</StyledCard>
 
 			<div className="mx-auto w-100 px-5">
-				<Link href={href}>
-					<a>
-						<MyButton className="bg-black mt-3 w-100" textColor="primary">
-							Register Now
-						</MyButton>
-					</a>
-				</Link>
+				{open ? (
+					<Link href={href}>
+						<a>
+							<MyButton
+								disabled={!open}
+								className="bg-black mt-3 w-100"
+								textColor="primary"
+							>
+								Register Now
+							</MyButton>
+						</a>
+					</Link>
+				) : (
+					<MyButton
+						disabled={!open}
+						className="bg-black mt-3 w-100"
+						textColor="primary"
+					>
+						Closed
+					</MyButton>
+				)}
 			</div>
 		</div>
 	);
 };
 
-const EventsSection = () => {
+const EventsSection = ({ config }) => {
+	const {
+		regist_dbcc_open,
+		regist_semnas_open,
+		regist_sharing_session_open,
+		regist_coaching_session_open,
+		regist_coaching_clinic_open,
+	} = config;
+	console.log("config", regist_dbcc_open);
 	return (
 		<div id="events" className="bg-secondary">
 			<StyledContainer className="bg-orange">
@@ -117,16 +146,18 @@ const EventsSection = () => {
 						<StyledSemiCircleSmallRight className="bg-orange" />
 					</div>
 
-					<Header>Events</Header>
+					<Header>Events </Header>
 
 					<div className="d-flex flex-lg-row flex-column my-5">
 						<div className="me-lg-5 me-0 mb-lg-0 mb-5">
 							<Card
+								open={regist_sharing_session_open}
 								text="SHARING SESSION"
 								href="/national-seminar/register/sharing-session"
 							/>
 						</div>
 						<Card
+							open={regist_semnas_open}
 							text="NATIONAL SEMINAR"
 							href="/national-seminar/register/national-seminar"
 						/>
@@ -135,11 +166,13 @@ const EventsSection = () => {
 					<div className="d-flex flex-lg-row flex-column">
 						<div className="me-lg-5 me-0 mb-lg-0 mb-5">
 							<Card
+								open={regist_coaching_session_open}
 								text="COACHING SESSION"
 								href="/dbcc/register/coaching-session"
 							/>
 						</div>
 						<Card
+							open={regist_coaching_clinic_open}
 							text="COACHING CLINIC"
 							href="/dbcc/register/coaching-clinic"
 						/>
@@ -147,6 +180,7 @@ const EventsSection = () => {
 
 					<div className="mt-5">
 						<Card
+							open={regist_dbcc_open}
 							text="DIPONEGORO BUSINESS CASE COMPETITION"
 							href="/dbcc/register/dbcc"
 						/>

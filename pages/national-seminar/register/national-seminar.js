@@ -165,9 +165,7 @@ const PaymentMethod = ({
 const PaymentSection = ({
 	price,
 	buktiTrfSetterGetter,
-	referralCode,
 	onChange,
-	onSearch,
 	referralCodeError = false,
 }) => {
 	const { buktiTrf, setBuktiTrf } = buktiTrfSetterGetter;
@@ -351,7 +349,7 @@ const FirstSection = ({ onChange, details, statuses, ktmSetterGetter }) => {
 	);
 };
 
-const SharingSessionRegister = () => {
+const NationalSeminarRegister = () => {
 	const statuses = [
 		{ value: "Undergraduate / Student" },
 		{ value: "Employee" },
@@ -507,10 +505,8 @@ const SharingSessionRegister = () => {
 						) : (
 							<PaymentSection
 								price={price}
-								onSearch={debouncedSearch}
 								buktiTrfSetterGetter={buktiTrfSetterGetter}
 								setDetails={setDetails}
-								referralCode={referralCode}
 								onChange={onChange}
 								referralCodeError={referralCodeError}
 							/>
@@ -553,4 +549,21 @@ const SharingSessionRegister = () => {
 	);
 };
 
-export default SharingSessionRegister;
+export async function getStaticProps() {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/config`);
+	const regist_semnas_open = (await res.json()).result[0].regist_semnas_open;
+
+	if (!regist_semnas_open) {
+		return {
+			redirect: {
+				destination: "/national-seminar/register",
+			},
+		};
+	}
+	return {
+		props: {},
+		revalidate: 1,
+	};
+}
+
+export default NationalSeminarRegister;
