@@ -822,14 +822,14 @@ export async function getStaticProps() {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/config`);
 	const regist_dbcc_open = (await res.json()).result[0].regist_dbcc_open;
 
-	// if (!regist_dbcc_open) {
-	// 	return {
-	// 		redirect: {
-	// 			destination: "/dbcc/register",
-	// 			permanent: false,
-	// 		},
-	// 	};
-	// }
+	if (!regist_dbcc_open) {
+		return {
+			redirect: {
+				destination: "/dbcc/register",
+				permanent: false,
+			},
+		};
+	}
 	return {
 		props: {},
 		revalidate: 1,

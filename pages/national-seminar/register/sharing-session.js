@@ -304,6 +304,14 @@ export async function getStaticProps() {
 	const regist_sharing_session_open = (await res.json()).result[0]
 		.regist_sharing_session_open;
 
+	if (!regist_sharing_session_open) {
+		return {
+			redirect: {
+				destination: "/national-seminar/register",
+			},
+		};
+	}
+
 	return {
 		props: {},
 		revalidate: 1,
