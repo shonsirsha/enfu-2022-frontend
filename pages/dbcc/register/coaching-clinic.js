@@ -360,13 +360,14 @@ export async function getStaticProps() {
 	const regist_coaching_clinic_open = (await res.json()).result[0]
 		.regist_coaching_clinic_open;
 
-	if (!regist_coaching_clinic_open) {
-		return {
-			redirect: {
-				destination: "/dbcc/register",
-			},
-		};
-	}
+	// if (!regist_coaching_clinic_open) {
+	// 	return {
+	// 		redirect: {
+	// 			destination: "/dbcc/register",
+	// 			permanent: false,
+	// 		},
+	// 	};
+	// }
 	return {
 		props: {},
 		revalidate: 1,

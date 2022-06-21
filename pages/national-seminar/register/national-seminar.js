@@ -553,13 +553,14 @@ export async function getStaticProps() {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/config`);
 	const regist_semnas_open = (await res.json()).result[0].regist_semnas_open;
 
-	if (!regist_semnas_open) {
-		return {
-			redirect: {
-				destination: "/national-seminar/register",
-			},
-		};
-	}
+	// if (!regist_semnas_open) {
+	// 	return {
+	// 		redirect: {
+	// 			destination: "/national-seminar/register",
+	// 			permanent: false,
+	// 		},
+	// 	};
+	// }
 	return {
 		props: {},
 		revalidate: 1,
