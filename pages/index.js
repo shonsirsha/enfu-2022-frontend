@@ -38,7 +38,7 @@ export default function Home({ config }) {
 	);
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/config`);
 	const config = (await res.json()).result[0];
 
@@ -46,7 +46,5 @@ export async function getStaticProps() {
 		props: {
 			config: config ? config : null,
 		},
-
-		revalidate: 1,
 	};
 }

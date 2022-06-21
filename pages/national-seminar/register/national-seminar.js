@@ -549,7 +549,7 @@ const NationalSeminarRegister = () => {
 	);
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_REST_API_URL}/config`);
 	const regist_semnas_open = (await res.json()).result[0].regist_semnas_open;
 
@@ -563,7 +563,6 @@ export async function getStaticProps() {
 	}
 	return {
 		props: {},
-		revalidate: 1,
 	};
 }
 
