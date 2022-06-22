@@ -167,7 +167,7 @@ const Testimonials = () => {
 
 	return (
 		<OuterContainer
-			id="testimonial"
+			id="testimonials"
 			className="bg-cream bg-cream d-flex justify-content-center position-relative"
 		>
 			<SemiCLeftContainer className="d-lg-block d-none">

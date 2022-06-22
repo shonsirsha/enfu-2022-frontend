@@ -79,6 +79,18 @@ const EnfuNavbar = () => {
 						</div>
 
 						<div className="d-flex flex-column mx-4 align-items-center">
+							<Link passHref href="/dbcc">
+								<StyledNavLink>DBCC</StyledNavLink>
+							</Link>
+						</div>
+
+						<div className="d-flex flex-column mx-4 align-items-center">
+							<Link passHref href="/national-seminar">
+								<StyledNavLink>National Seminar</StyledNavLink>
+							</Link>
+						</div>
+
+						<div className="d-flex flex-column mx-4 align-items-center">
 							<Link passHref href="#timeline">
 								<StyledNavLink>TIMELINE</StyledNavLink>
 							</Link>
