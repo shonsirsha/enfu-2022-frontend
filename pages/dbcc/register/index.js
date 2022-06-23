@@ -214,7 +214,10 @@ const DBCC = ({ config }) => {
 						) : (
 							<Card open={0}>
 								<EventNameText className="text-white text-center">
-									Coaching <br /> Clinic
+									Coaching <br /> Clinic{" "}
+									<u>
+										<i>Closed</i>
+									</u>
 								</EventNameText>
 							</Card>
 						)}
