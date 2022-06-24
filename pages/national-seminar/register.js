@@ -77,6 +77,7 @@ const PillLink = ({ text, open, href = "/", className }) => (
 		{open ? (
 			<Link href={href}>
 				<LinkContainer
+					open={1}
 					className={`bg-danger justify-content-center ${className}`}
 				>
 					<StyledLink className="text-cream text-center">{text}</StyledLink>
@@ -84,7 +85,7 @@ const PillLink = ({ text, open, href = "/", className }) => (
 			</Link>
 		) : (
 			<LinkContainer
-				open={open}
+				open={0}
 				className={`bg-gray justify-content-center ${className}`}
 			>
 				<StyledLink className="text-cream text-center">
@@ -111,7 +112,7 @@ const Register = ({ config }) => {
 
 					<div className="d-flex justify-content-center align-items-center flex-lg-row flex-column w-100 mt-4">
 						<PillLink
-							open={regist_sharing_session_open}
+							open={regist_sharing_session_open ? 1 : 0}
 							className="me-lg-4 me-0 my-lg-0 my-4"
 							text={
 								<>
@@ -121,7 +122,7 @@ const Register = ({ config }) => {
 							href="/national-seminar/register/sharing-session"
 						/>
 						<PillLink
-							open={regist_semnas_open}
+							open={regist_semnas_open ? 1 : 0}
 							text={
 								<>
 									National <br /> Seminar

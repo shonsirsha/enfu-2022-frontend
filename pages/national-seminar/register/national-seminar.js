@@ -461,7 +461,10 @@ const NationalSeminarRegister = () => {
 			bodyFormData.append("univName", univName);
 			bodyFormData.append("email", email);
 			bodyFormData.append("dob", dob);
-			bodyFormData.append("referralCode", referralCode);
+			bodyFormData.append(
+				"referralCode",
+				referralCode.length ? referralCode : "-"
+			);
 
 			if (ktm) {
 				bodyFormData.append("ktm", ktm);
