@@ -85,8 +85,7 @@ const SemnasNavbar = () => {
 								</a>
 							</Link>
 							{(router.pathname === "/national-seminar/register" ||
-								router.pathname ===
-									"/national-seminar/register/sharing-session" ||
+								router.pathname === "/national-seminar/register/talk-inc" ||
 								router.pathname ===
 									"/national-seminar/register/national-seminar") && (
 								<Dot className="bg-danger mt-2" />

@@ -51,35 +51,23 @@ const Header = styled.h1`
 const TimelineSemnas = () => {
 	const timelineDbccSmall = [
 		{
-			dateStart: null,
-			dateEnd: "Date",
-			text: "Event Name",
+			dateStart: "5",
+			dateEnd: "20 Oct 2022",
+			text: "Presale 1 Summit",
 			id: 14,
 		},
 
 		{
-			dateStart: null,
-			dateEnd: "Date",
-			text: "Event Name",
+			dateStart: "21 Oct",
+			dateEnd: "8 Nov 2022",
+			text: "Presale 2 Summit",
 			id: 93,
 		},
 		{
 			dateStart: null,
-			dateEnd: "Date",
-			text: "Event Name",
+			dateEnd: "13 Nov 2022",
+			text: "The Summit",
 			id: 928123,
-		},
-		{
-			dateStart: null,
-			dateEnd: "Date",
-			text: "Event Name",
-			id: 123,
-		},
-		{
-			dateStart: null,
-			dateEnd: "Date",
-			text: "Event Name",
-			id: 98123,
 		},
 	];
 
@@ -93,7 +81,10 @@ const TimelineSemnas = () => {
 					</Header>
 
 					<div className="my-3" />
-					<HorizontalTimeLineSemnas data={timelineDbccSmall} />
+					<HorizontalTimeLineSemnas
+						data={timelineDbccSmall}
+						className="text-white"
+					/>
 				</Container>
 			</OuterContainer>
 		</div>

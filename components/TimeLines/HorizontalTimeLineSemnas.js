@@ -63,7 +63,6 @@ const Point = styled.div`
 
 const DateText = styled.p`
 	margin: 0;
-	font-family: TT_Ramilas;
 	font-size: 16px;
 	font-height: 16px;
 	font-weight: 700;

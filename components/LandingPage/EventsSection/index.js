@@ -152,8 +152,8 @@ const EventsSection = ({ config }) => {
 						<div className="me-lg-5 me-0 mb-lg-0 mb-5">
 							<Card
 								open={regist_sharing_session_open}
-								text="SHARING SESSION"
-								href="/national-seminar/register/sharing-session"
+								text="TALK INC"
+								href="/national-seminar/register/talk-inc"
 							/>
 						</div>
 						<Card

@@ -45,34 +45,22 @@ const TimelineSharingSession = () => {
 	const timelineDbccSmall = [
 		{
 			dateStart: null,
-			dateEnd: "Date",
-			text: "Event Name",
+			dateEnd: "24 Jul 2022",
+			text: "Open Registration",
 			id: 14,
 		},
 
 		{
 			dateStart: null,
-			dateEnd: "Date",
-			text: "Event Name",
+			dateEnd: "4 Aug 2022",
+			text: "Close Registration",
 			id: 93,
 		},
 		{
 			dateStart: null,
-			dateEnd: "Date",
-			text: "Event Name",
+			dateEnd: "7 Aug 2022",
+			text: "Talk Inc. 1",
 			id: 928123,
-		},
-		{
-			dateStart: null,
-			dateEnd: "Date",
-			text: "Event Name",
-			id: 123,
-		},
-		{
-			dateStart: null,
-			dateEnd: "Date",
-			text: "Event Name",
-			id: 98123,
 		},
 	];
 
@@ -83,12 +71,14 @@ const TimelineSharingSession = () => {
 		>
 			<Container className="shadow bg-cream d-flex flex-column align-items-center position-relative">
 				<Header className="mb-5 text-center">
-					TIMELINE <br />{" "}
-					<span className="text-danger">SHARING SESSION 1.0</span>
+					TIMELINE <br /> <span className="text-danger">TALK INC 1.0</span>
 				</Header>
 
 				<div className="my-3" />
-				<HorizontalTimeLineSemnas data={timelineDbccSmall} />
+				<HorizontalTimeLineSemnas
+					data={timelineDbccSmall}
+					className="text-white"
+				/>
 			</Container>
 		</OuterContainer>
 	);

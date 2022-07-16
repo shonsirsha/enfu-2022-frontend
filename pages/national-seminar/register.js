@@ -116,10 +116,10 @@ const Register = ({ config }) => {
 							className="me-lg-4 me-0 my-lg-0 my-4"
 							text={
 								<>
-									Sharing <br /> Session
+									Talk <br /> Inc
 								</>
 							}
-							href="/national-seminar/register/sharing-session"
+							href="/national-seminar/register/talk-inc"
 						/>
 						<PillLink
 							open={regist_semnas_open ? 1 : 0}

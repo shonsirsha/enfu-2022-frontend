@@ -123,22 +123,25 @@ const SemiCLeft = styled(SemiCircle)`
 const Testimonials = () => {
 	const testimonials = [
 		{
-			name: "Sean Koch",
+			name: "Syamaizar Riandi",
+			position: "Universitas Indonesia",
 			picture: "testi1.png",
 			content:
-				"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
+				"The 13th ENFUTION National Seminar held by MSA FEB Undip was very inspiring and insightful. It helps us as a young generation to increase our values to face the upcoming era, just like the theme itself. I’m looking forward to the next ENFUTION National Seminar because I’m sure it will be also valuable as before. It’s definitely worth the time",
 		},
 		{
-			name: "Eliza Garshey",
-			picture: "testi2.png",
-			content:
-				"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-		},
-		{
-			name: "Isabela Comegna dos Santos",
+			name: "Vania Nabillah Ramadhani",
+			position: "Universitas Gadjah Mada, 2020",
 			picture: "testi3.png",
 			content:
-				"The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from 'de Finibus Bonorum et Malorum' by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
+				"DBCC was such a fun experience for me, and I learned a lot not only just by doing the case with my team, but also from the coaching session held by DBCC. As someone with not much experience, it was super helpful by leading me to the right direction when cracking the case :)",
+		},
+		{
+			name: "Renaldi Stevanus",
+			position: "Hubungan Internasional Unpar’18",
+			picture: "testi2.png",
+			content:
+				"The 13th ENFUTION has been a wonderful experience. The event brought such an impactfull insights provided by the great speakers also the committe that managed the flow. I can’t wait for the next Enfution to be the hub and keep giving Indonesia’s student impactful and insightfull knowledge on this era",
 		},
 	];
 
@@ -205,6 +208,10 @@ const Testimonials = () => {
 						<b>
 							<i> - {testimonials[active].name}</i>
 						</b>
+						<br />
+						<i className="text-white text-light">
+							{testimonials[active].position}
+						</i>
 					</TestimonialText>
 
 					<div className="d-lg-none d-flex mt-3 w-100 justify-content-center">

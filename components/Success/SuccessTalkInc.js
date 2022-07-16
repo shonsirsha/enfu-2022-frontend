@@ -63,7 +63,7 @@ const Container = styled.div`
 	flex-direction: column;
 `;
 
-const SuccessSemnas = () => {
+const SuccessTalkInc = () => {
 	return (
 		<OutermostContainer className="bg-cream d-flex ">
 			<OuterContainer className="bg-orange w-100 d-flex flex-column align-items-center position-relative">
@@ -74,7 +74,7 @@ const SuccessSemnas = () => {
 						THANK YOU <span>!</span>
 					</Header>
 					<Subheader className="my-4">
-						See you on September 11<sup>th</sup> at 10 a.m.
+						See you on August 7<sup>th</sup> at 10 a.m.
 					</Subheader>
 
 					<Text className="mt-2 text-start">
@@ -96,4 +96,4 @@ const SuccessSemnas = () => {
 	);
 };
 
-export default SuccessSemnas;
+export default SuccessTalkInc;

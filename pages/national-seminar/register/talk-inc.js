@@ -6,10 +6,8 @@ import FormInput from "components/FormInput";
 import { mediaBreakpoint } from "utils/mediaBreakpoints";
 import MyButton from "components/Buttons/MyButton";
 import Select from "components/FormInput/Select";
-import SuccessSemnas from "components/Success/SuccessSemnas";
-
+import SuccessTalkInc from "components/Success/SuccessTalkInc";
 import { validEmail, whitespace } from "utils/validations";
-
 const OuterContainer = styled.div`
 	min-height: 100vh;
 	display: flex;
@@ -196,7 +194,7 @@ const SharingSessionRegister = () => {
 	return (
 		<>
 			{success ? (
-				<SuccessSemnas />
+				<SuccessTalkInc />
 			) : (
 				<OuterContainer className="bg-secondary">
 					<InnerContainer className="bg-cream d-flex justify-content-center shadow">
@@ -204,7 +202,7 @@ const SharingSessionRegister = () => {
 							<Header className="mt-md-2 mb-md-4 mt-1 mb-3 text-center">
 								REGISTER{" "}
 								<span className="text-danger">
-									FOR <br /> SHARING SESSION 1.0
+									FOR <br /> TALK INC 1.0
 								</span>
 							</Header>
 
