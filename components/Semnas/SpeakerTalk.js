@@ -58,9 +58,8 @@ const SpeakerTalk = ({ imageOnRight = true, id, children }) => {
 			className="bg-secondary d-flex justify-content-center"
 		>
 			<Separator className="shadow bg-cream me-lg-5 me-3" />
-			<Container className="shadow bg-cream d-flex flex-column align-items-center position-relative">
+			<Container className="shadow bg-cream d-flex flex-lg-row flex-column align-items-center position-relative">
 				{imageOnRight && <>{children}</>}
-
 				<div
 					className={`d-flex flex-column ${
 						imageOnRight ? `ms-lg-auto` : `me-lg-auto`
@@ -73,7 +72,6 @@ const SpeakerTalk = ({ imageOnRight = true, id, children }) => {
 						<SpeakerName className="text-cream">Speaker Name</SpeakerName>
 					</NameContainer>
 				</div>
-
 				{!imageOnRight && <>{children}</>}
 			</Container>
 			<Separator className="shadow bg-cream ms-lg-5 ms-3" />
