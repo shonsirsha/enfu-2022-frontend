@@ -667,7 +667,7 @@ const DBCC = () => {
 
 			const res = await axios({
 				method: "post",
-				url: `${NEXT_PUBLIC_REST_API_URL}/dbcc/images`,
+				url: `${process.env.NEXT_PUBLIC_REST_API_URL}/dbcc/images`,
 				headers: { "Content-Type": "multipart/form-data" },
 				data: bodyFormData,
 			});
