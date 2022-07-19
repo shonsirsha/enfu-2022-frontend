@@ -804,7 +804,7 @@ const DBCC = () => {
 					</OuterContainer>
 
 					{loading ? (
-						"Loading..."
+						<h4 class="mt-4 text-white mx-auto">Loading...</h4>
 					) : (
 						<PaymentSection
 							onSubmit={handleSubmit}
