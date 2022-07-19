@@ -260,17 +260,18 @@ const CoachingClinic = () => {
 
 			await axios({
 				method: "post",
-				url: `${NEXT_PUBLIC_REST_API_URL}/coaching-clinic`,
+				url: `${process.env.NEXT_PUBLIC_REST_API_URL}/coaching-clinic`,
 				headers: { "Content-Type": "multipart/form-data" },
 				data: bodyFormData,
 			});
 
 			setSuccess(true);
 		} catch (e) {
+			console.log("E", e);
+			console.log(e.response);
 			if (e.response.status === 409) {
 				alert(`Oops, your email (${email}) has already been registered! 😬 `);
 			} else {
-				console.log(e);
 				alert(
 					`Oops, sorry, an error occured. 😬 Please try to re-submit your registration.\n\nIf this error keeps happening, please report it to us. Error code: ${e.response.status}`
 				);
