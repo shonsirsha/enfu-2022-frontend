@@ -674,7 +674,7 @@ const DBCC = () => {
 			return res.data.teamId;
 		} catch (e) {
 			alert(
-				`Oops, sorry, an error occured. 😬 Please try to re-submit your registration.\n\nIf this error keeps happening, please report it to us. Error code: ${e.response.status}`
+				`Oops, sorry, an error occured... 😬 Please try to re-submit your registration.\n\nIf this error keeps happening, please report it to us. Error code: ${e.response.status}`
 			);
 		}
 
