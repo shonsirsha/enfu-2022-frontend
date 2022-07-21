@@ -114,7 +114,7 @@ const Block = styled.div`
 
 const Home = ({ title = <></>, content = <></> }) => {
 	return (
-		<OuterContainer className="bg-orange align-items-center">
+		<OuterContainer className="bg-orange align-items-center pb-5">
 			<TopContainer className="bg-secondary shadow mb-md-5 mb-3">
 				<TopContainerInner className="bg-cream shadow flex-lg-row flex-column">
 					<Circle className="bg-secondary shadow" />
