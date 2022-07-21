@@ -182,7 +182,7 @@ const AboutUsCoachingSession = () => {
 								</div>
 							</div>
 
-							<Link href="./register/dbcc">
+							<Link href="./register/coaching-session">
 								<StyledButton
 									variant={"danger"}
 									textColor="black"
